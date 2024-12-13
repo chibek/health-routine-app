@@ -1,12 +1,14 @@
 {
   "cesVersion": "2.12.1",
-  "projectName": "my-expo-app",
+  "projectName": "health-habitz-app",
   "packages": [
     {
       "name": "nativewindui",
       "type": "styling",
       "options": {
-        "selectedComponents": ["text"]
+        "selectedComponents": [
+          "text"
+        ]
       }
     },
     {

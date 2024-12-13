@@ -6,10 +6,10 @@ import { Link, Stack } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
 import { Pressable, View } from 'react-native';
 
-import { ThemeToggle } from '~/components/ThemeToggle';
-import { cn } from '~/lib/cn';
-import { useColorScheme, useInitialAndroidBarSync } from '~/lib/useColorScheme';
-import { NAV_THEME } from '~/theme';
+import { ThemeToggle } from '@/components/ThemeToggle';
+import { cn } from '@/lib/cn';
+import { useColorScheme, useInitialAndroidBarSync } from '@/lib/useColorScheme';
+import { NAV_THEME } from '@/theme';
 
 export {
   // Catch any errors thrown by the Layout component.
@@ -26,17 +26,12 @@ export default function RootLayout() {
         key={`root-status-bar-${isDarkColorScheme ? 'light' : 'dark'}`}
         style={isDarkColorScheme ? 'light' : 'dark'}
       />
-      {/* WRAP YOUR APP WITH ANY ADDITIONAL PROVIDERS HERE */}
-      {/* <ExampleProvider> */}
-
       <NavThemeProvider value={NAV_THEME[colorScheme]}>
         <Stack screenOptions={SCREEN_OPTIONS}>
           <Stack.Screen name="index" options={INDEX_OPTIONS} />
           <Stack.Screen name="modal" options={MODAL_OPTIONS} />
         </Stack>
       </NavThemeProvider>
-
-      {/* </ExampleProvider> */}
     </>
   );
 }
