@@ -5,11 +5,13 @@ import { ThemeProvider as NavThemeProvider } from '@react-navigation/native';
 import { Stack, usePathname, useRouter, useSegments } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
 import React, { Suspense, useEffect } from 'react';
-import { ActivityIndicator, LogBox } from 'react-native';
+import { ActivityIndicator, LogBox, View } from 'react-native';
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { Toaster } from 'sonner-native';
 
 import { useColorScheme, useInitialAndroidBarSync } from '@/lib/useColorScheme';
 import { NAV_THEME } from '@/theme';
+import { COLORS } from '@/theme/colors';
 import { tokenCache } from '@/utils/cache';
 
 export {
@@ -44,11 +46,20 @@ const InitialLayout = () => {
   }, [isSignedIn]);
 
   if (!isLoaded) {
-    return <Loading />;
+    return (
+      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+        <ActivityIndicator size="large" color={COLORS.light.primary} />
+      </View>
+    );
   }
 
   return (
-    <Stack>
+    <Stack
+      screenOptions={{
+        contentStyle: {
+          backgroundColor: COLORS.light.background,
+        },
+      }}>
       <Stack.Screen name="index" options={{ headerShown: false }} />
       <Stack.Screen name="(authenticated)" options={{ headerShown: false }} />
     </Stack>
@@ -66,14 +77,16 @@ const RootLayout = () => {
     <ClerkProvider publishableKey={CLERK_PUBLISHABLE_KEY!} tokenCache={tokenCache}>
       <ClerkLoaded>
         <Suspense fallback={<Loading />}>
-          {/* <StatusBar
+          <StatusBar
             key={`root-status-bar-${isDarkColorScheme ? 'light' : 'dark'}`}
             style={isDarkColorScheme ? 'light' : 'dark'}
-          /> */}
-          <Toaster />
-          {/* <NavThemeProvider value={NAV_THEME[colorScheme]}> */}
-          <InitialLayout />
-          {/* </NavThemeProvider> */}
+          />
+          <GestureHandlerRootView style={{ flex: 1 }}>
+            <Toaster />
+            <NavThemeProvider value={NAV_THEME[colorScheme]}>
+              <InitialLayout />
+            </NavThemeProvider>
+          </GestureHandlerRootView>
         </Suspense>
       </ClerkLoaded>
     </ClerkProvider>

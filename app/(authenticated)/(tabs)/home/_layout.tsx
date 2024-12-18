@@ -1,5 +1,6 @@
 import { Stack } from 'expo-router';
 import React from 'react';
+import { Text } from 'react-native';
 
 const Layout = () => {
   return (
@@ -8,6 +9,7 @@ const Layout = () => {
         name="index"
         options={{
           title: 'Home',
+          headerRight: () => <Text>Right</Text>,
         }}
       />
     </Stack>

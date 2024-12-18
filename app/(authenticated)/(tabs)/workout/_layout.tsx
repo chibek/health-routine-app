@@ -8,7 +8,6 @@ const Layout = () => {
         name="index"
         options={{
           title: 'Workout',
-          headerShadowVisible: false,
         }}
       />
     </Stack>

@@ -3,7 +3,7 @@ import { Text, View } from 'react-native';
 
 const Workout = () => {
   return (
-    <View>
+    <View className="flex-1">
       <Text>Workout</Text>
     </View>
   );

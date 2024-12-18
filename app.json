@@ -30,19 +30,19 @@
         "expo-dynamic-app-icon",
         {
           "default": {
-            "image": "./assets/icon.png",
+            "image": "./assets/images/icon.png",
             "prerendered": true
           },
           "dark": {
-            "image": "./assets/icon-dark.png",
+            "image": "./assets/images/icon-dark.png",
             "prerendered": true
           },
           "green": {
-            "image": "./assets/icon-green.png",
+            "image": "./assets/images/icon-green.png",
             "prerendered": true
           },
           "blue": {
-            "image": "./assets/icon-blue.png",
+            "image": "./assets/images/icon-blue.png",
             "prerendered": true
           }
         }
