@@ -11,16 +11,45 @@
     },
     "plugins": [
       "expo-router",
+      "react-native-bottom-tabs",
+      [
+        "expo-build-properties",
+        {
+          "ios": {
+            "useFrameworks": "static"
+          }
+        }
+      ],
       [
         "expo-dev-launcher",
         {
           "launchMode": "most-recent"
         }
+      ],
+      [
+        "expo-dynamic-app-icon",
+        {
+          "default": {
+            "image": "./assets/icon.png",
+            "prerendered": true
+          },
+          "dark": {
+            "image": "./assets/icon-dark.png",
+            "prerendered": true
+          },
+          "green": {
+            "image": "./assets/icon-green.png",
+            "prerendered": true
+          },
+          "blue": {
+            "image": "./assets/icon-blue.png",
+            "prerendered": true
+          }
+        }
       ]
     ],
     "experiments": {
-      "typedRoutes": true,
-      "tsconfigPaths": true
+      "typedRoutes": true
     },
     "orientation": "portrait",
     "icon": "./assets/icon.png",

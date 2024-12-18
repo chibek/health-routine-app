@@ -1,46 +1,72 @@
-import { useHeaderHeight } from '@react-navigation/elements';
-import { Icon } from '@roninoss/icons';
-import { FlashList } from '@shopify/flash-list';
-import { cssInterop } from 'nativewind';
-import * as React from 'react';
-import { Linking, useWindowDimensions, View } from 'react-native';
+import { useOAuth } from '@clerk/clerk-expo';
+import { Ionicons } from '@expo/vector-icons';
+import * as WebBrowser from 'expo-web-browser';
+import { Image, Text, TouchableOpacity, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
-import { Text } from '@/components/nativewindui/Text';
-import { useColorScheme } from '@/lib/useColorScheme';
+import { Button } from '@/components/nativewindui/Button';
 
-cssInterop(FlashList, {
-  className: 'style',
-  contentContainerClassName: 'contentContainerStyle',
-});
+const LoginScreen = () => {
+  const { startOAuthFlow: appleAuth } = useOAuth({ strategy: 'oauth_apple' });
+  const { startOAuthFlow: googleAuth } = useOAuth({ strategy: 'oauth_google' });
+  const { top } = useSafeAreaInsets();
 
-export default function Screen() {
-  return <ListEmptyComponent />;
-}
+  const handleAppleLogin = async () => {
+    try {
+      const { createdSessionId, setActive } = await appleAuth();
 
-function ListEmptyComponent() {
-  const insets = useSafeAreaInsets();
-  const dimensions = useWindowDimensions();
-  const headerHeight = useHeaderHeight();
-  const { colors } = useColorScheme();
-  const height = dimensions.height - headerHeight - insets.bottom - insets.top;
+      if (createdSessionId) {
+        setActive!({ session: createdSessionId });
+      }
+    } catch (err) {
+      console.error('OAuth error', err);
+    }
+  };
 
+  const handleGoogleLogin = async () => {
+    try {
+      const { createdSessionId, setActive } = await googleAuth();
+
+      if (createdSessionId) {
+        setActive!({ session: createdSessionId });
+      }
+    } catch (err) {
+      console.error('OAuth error', err);
+    }
+  };
+
+  const openLink = async () => {
+    WebBrowser.openBrowserAsync('https://github.com/chibek/health-routine-app');
+  };
   return (
-    <View style={{ height }} className="flex-1 items-center justify-center gap-1 px-12">
-      <Icon name="file-plus-outline" size={42} color={colors.grey} />
-      <Text variant="title3" className="pb-1 text-center font-semibold">
-        No Components Installed
-      </Text>
-      <Text color="tertiary" variant="subhead" className="pb-4 text-center">
-        You can install any of the free components from the{' '}
-        <Text
-          onPress={() => Linking.openURL('https://nativewindui.com')}
-          variant="subhead"
-          className="text-primary">
-          NativeWindUI
+    <View style={{ paddingTop: top }} className="mt-20 flex-1 gap-40">
+      <Image source={require('@/assets/images/todoist-logo.png')} className="size-4" />
+      <Image source={require('@/assets/images/login.png')} className="size-16" />
+      <Text className="text-center text-xl font-bold">Organize your work and life, finally.</Text>
+
+      <View className="mx-10 gap-4">
+        <Button size="lg" onPress={handleAppleLogin}>
+          <Ionicons name="logo-apple" size={24} color="white" />
+          <Text>Continue with Apple</Text>
+        </Button>
+
+        <Button size="lg" onPress={handleGoogleLogin}>
+          <Ionicons name="logo-google" size={24} />
+          <Text>Continue with Google</Text>
+        </Button>
+
+        <Button size="lg" onPress={handleAppleLogin}>
+          <Ionicons name="mail" size={24} />
+          <Text>Continue with Email</Text>
+        </Button>
+
+        <Text>
+          By continuing you agree to Todoist's <Text onPress={openLink}>Terms of Service</Text> and{' '}
+          <Text onPress={openLink}>Privacy Policy</Text>.
         </Text>
-        {' website.'}
-      </Text>
+      </View>
     </View>
   );
-}
+};
+
+export default LoginScreen;
