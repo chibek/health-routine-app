@@ -82,10 +82,10 @@ const RootLayout = () => {
   console.log({ databaseError: error });
   console.log({ databaseSuccess: success });
 
-  // useEffect(() => {
-  //   if (!success) return;
-  //   addDBData(db);
-  // }, [success]);
+  useEffect(() => {
+    if (!success) return;
+    addDBData(db);
+  }, [success]);
 
   return (
     <ClerkProvider publishableKey={CLERK_PUBLISHABLE_KEY!} tokenCache={tokenCache}>

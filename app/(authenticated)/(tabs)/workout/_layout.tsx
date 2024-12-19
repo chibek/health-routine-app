@@ -3,11 +3,12 @@ import React from 'react';
 
 const Layout = () => {
   return (
-    <Stack>
+    <Stack screenOptions={{ headerShadowVisible: false }}>
       <Stack.Screen
         name="index"
         options={{
           title: 'Entrenamiento',
+          headerLargeTitle: true,
         }}
       />
     </Stack>
