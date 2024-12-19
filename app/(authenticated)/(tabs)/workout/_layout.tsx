@@ -7,7 +7,7 @@ const Layout = () => {
       <Stack.Screen
         name="index"
         options={{
-          title: 'Workout',
+          title: 'Entrenamiento',
         }}
       />
     </Stack>
