@@ -77,10 +77,8 @@ function Loading() {
 const RootLayout = () => {
   const expoDB = openDatabaseSync('workouts.db');
   const db = drizzle(expoDB);
-  const { success, error } = useMigrations(db, migrations);
+  const { success } = useMigrations(db, migrations);
   const { colorScheme, isDarkColorScheme } = useColorScheme();
-  console.log({ databaseError: error });
-  console.log({ databaseSuccess: success });
 
   useEffect(() => {
     if (!success) return;

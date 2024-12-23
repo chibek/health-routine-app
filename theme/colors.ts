@@ -15,7 +15,8 @@ const IOS_SYSTEM_COLORS = {
     root: 'rgb(255, 255, 255)',
     card: 'rgb(255, 255, 255)',
     destructive: 'rgb(255, 56, 43)',
-    primary: 'rgb(0, 123, 254)',
+    primary: 'rgb(255, 223, 0)',
+    secondary: 'rgb(97, 97, 97)',
   },
   dark: {
     grey6: 'rgb(21, 21, 24)',
@@ -29,7 +30,8 @@ const IOS_SYSTEM_COLORS = {
     root: 'rgb(0, 0, 0)',
     card: 'rgb(28, 28, 30)',
     destructive: 'rgb(254, 67, 54)',
-    primary: 'rgb(3, 133, 255)',
+    primary: 'rgb(255, 223, 0)',
+    secondary: 'rgb(97, 97, 97)',
   },
 } as const;
 
@@ -48,7 +50,8 @@ const ANDROID_COLORS = {
     root: 'rgb(255, 255, 255)',
     card: 'rgb(255, 255, 255)',
     destructive: 'rgb(186, 26, 26)',
-    primary: 'rgb(0, 112, 233)',
+    primary: 'rgb(255, 223, 0)',
+    secondary: 'rgb(97, 97, 97)',
   },
   dark: {
     grey6: 'rgb(16, 19, 27)',
@@ -62,7 +65,8 @@ const ANDROID_COLORS = {
     root: 'rgb(0, 0, 0)',
     card: 'rgb(16, 19, 27)',
     destructive: 'rgb(147, 0, 10)',
-    primary: 'rgb(3, 133, 255)',
+    primary: 'rgb(255, 223, 0)',
+    secondary: 'rgb(97, 97, 97)',
   },
 } as const;
 

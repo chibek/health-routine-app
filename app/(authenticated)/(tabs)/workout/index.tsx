@@ -1,28 +1,27 @@
 import { Ionicons } from '@expo/vector-icons';
-import { drizzle, useLiveQuery } from 'drizzle-orm/expo-sqlite';
+import { useLiveQuery } from 'drizzle-orm/expo-sqlite';
 import * as Haptics from 'expo-haptics';
 import { useRouter } from 'expo-router';
-import { useSQLiteContext } from 'expo-sqlite';
 import React from 'react';
 import { Text, View, ScrollView } from 'react-native';
 
 import RoutineCard from '@/components/RoutineCard';
 import { Button } from '@/components/nativewindui/Button';
 import { routines } from '@/db/schema';
+import { useDrizzleDb } from '@/lib/useDB';
 
 const Workout = () => {
   const router = useRouter();
-  const db = useSQLiteContext();
-  const drizzleDb = drizzle(db);
+  const drizzleDB = useDrizzleDb();
 
-  const { data } = useLiveQuery(drizzleDb.select().from(routines));
+  const { data } = useLiveQuery(drizzleDB.select().from(routines));
   const onPressNewRoutine = () => {
     Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
-    router.push('../routine/new');
+    router.push('/new-routine');
   };
 
   return (
-    <ScrollView contentInsetAdjustmentBehavior="automatic" className="flex-1">
+    <ScrollView contentInsetAdjustmentBehavior="automatic" className="flex-1 bg-background">
       <View className="gap-2 p-4">
         <Text className="text-lg font-bold">Rutinas</Text>
         <View className="flex-1 flex-row gap-4">

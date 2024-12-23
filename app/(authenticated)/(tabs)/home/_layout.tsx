@@ -4,7 +4,7 @@ import { Text } from 'react-native';
 
 const Layout = () => {
   return (
-    <Stack>
+    <Stack screenOptions={{ headerShadowVisible: false }}>
       <Stack.Screen
         name="index"
         options={{

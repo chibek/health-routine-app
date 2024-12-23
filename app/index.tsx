@@ -1,7 +1,5 @@
 import { useOAuth } from '@clerk/clerk-expo';
 import { Ionicons } from '@expo/vector-icons';
-import { useDrizzleStudio } from 'expo-drizzle-studio-plugin';
-import { useSQLiteContext } from 'expo-sqlite';
 import * as WebBrowser from 'expo-web-browser';
 import { Image, Text, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
@@ -41,8 +39,6 @@ const LoginScreen = () => {
     WebBrowser.openBrowserAsync('https://github.com/chibek/health-routine-app');
   };
 
-  const db = useSQLiteContext();
-  useDrizzleStudio(db);
   return (
     <View style={{ paddingTop: top }} className="mt-10 flex-1 items-center gap-16">
       <Image
@@ -57,7 +53,7 @@ const LoginScreen = () => {
 
       <View className="mx-10 gap-4">
         <Button size="lg" onPress={handleAppleLogin}>
-          <Ionicons name="logo-apple" size={24} color="white" />
+          <Ionicons name="logo-apple" size={24} />
           <Text>Continue with Apple</Text>
         </Button>
 
