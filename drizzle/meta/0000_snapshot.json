@@ -1,9 +1,98 @@
 {
   "version": "6",
   "dialect": "sqlite",
-  "id": "3de886e4-bcb4-4c1b-a43e-6c043bc539fc",
+  "id": "9cb6b48b-5335-4746-83ea-4ebc898f1903",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "tables": {
+    "exercise_sets": {
+      "name": "exercise_sets",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "integer",
+          "primaryKey": true,
+          "notNull": true,
+          "autoincrement": true
+        },
+        "exercises_routine_id": {
+          "name": "exercises_routine_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "type": {
+          "name": "type",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "reps": {
+          "name": "reps",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "weight": {
+          "name": "weight",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "rest_seconds": {
+          "name": "rest_seconds",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "order": {
+          "name": "order",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false,
+          "default": "(CURRENT_TIMESTAMP)"
+        },
+        "updated_at": {
+          "name": "updated_at",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": "(CURRENT_TIMESTAMP)"
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "exercise_sets_exercises_routine_id_exercises_routines_id_fk": {
+          "name": "exercise_sets_exercises_routine_id_exercises_routines_id_fk",
+          "tableFrom": "exercise_sets",
+          "tableTo": "exercises_routines",
+          "columnsFrom": [
+            "exercises_routine_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "checkConstraints": {}
+    },
     "exercises": {
       "name": "exercises",
       "columns": {
@@ -51,8 +140,8 @@
       "uniqueConstraints": {},
       "checkConstraints": {}
     },
-    "routine_exercises": {
-      "name": "routine_exercises",
+    "exercises_routines": {
+      "name": "exercises_routines",
       "columns": {
         "id": {
           "name": "id",
@@ -61,59 +150,15 @@
           "notNull": true,
           "autoincrement": true
         },
-        "sets": {
-          "name": "sets",
+        "exercises_id": {
+          "name": "exercises_id",
           "type": "integer",
-          "primaryKey": false,
-          "notNull": false,
-          "autoincrement": false
-        },
-        "reps": {
-          "name": "reps",
-          "type": "integer",
-          "primaryKey": false,
-          "notNull": false,
-          "autoincrement": false
-        },
-        "duration": {
-          "name": "duration",
-          "type": "integer",
-          "primaryKey": false,
-          "notNull": false,
-          "autoincrement": false
-        },
-        "weight": {
-          "name": "weight",
-          "type": "integer",
-          "primaryKey": false,
-          "notNull": false,
-          "autoincrement": false
-        },
-        "created_at": {
-          "name": "created_at",
-          "type": "text",
-          "primaryKey": false,
-          "notNull": false,
-          "autoincrement": false,
-          "default": "(CURRENT_TIMESTAMP)"
-        },
-        "updated_at": {
-          "name": "updated_at",
-          "type": "text",
           "primaryKey": false,
           "notNull": true,
-          "autoincrement": false,
-          "default": "(CURRENT_TIMESTAMP)"
+          "autoincrement": false
         },
         "routine_id": {
           "name": "routine_id",
-          "type": "integer",
-          "primaryKey": false,
-          "notNull": true,
-          "autoincrement": false
-        },
-        "exercise_id": {
-          "name": "exercise_id",
           "type": "integer",
           "primaryKey": false,
           "notNull": true,
@@ -122,12 +167,12 @@
       },
       "indexes": {},
       "foreignKeys": {
-        "routine_exercises_routine_id_routines_id_fk": {
-          "name": "routine_exercises_routine_id_routines_id_fk",
-          "tableFrom": "routine_exercises",
-          "tableTo": "routines",
+        "exercises_routines_exercises_id_exercises_id_fk": {
+          "name": "exercises_routines_exercises_id_exercises_id_fk",
+          "tableFrom": "exercises_routines",
+          "tableTo": "exercises",
           "columnsFrom": [
-            "routine_id"
+            "exercises_id"
           ],
           "columnsTo": [
             "id"
@@ -135,12 +180,12 @@
           "onDelete": "no action",
           "onUpdate": "no action"
         },
-        "routine_exercises_exercise_id_exercises_id_fk": {
-          "name": "routine_exercises_exercise_id_exercises_id_fk",
-          "tableFrom": "routine_exercises",
-          "tableTo": "exercises",
+        "exercises_routines_routine_id_routines_id_fk": {
+          "name": "exercises_routines_routine_id_routines_id_fk",
+          "tableFrom": "exercises_routines",
+          "tableTo": "routines",
           "columnsFrom": [
-            "exercise_id"
+            "routine_id"
           ],
           "columnsTo": [
             "id"
@@ -177,18 +222,11 @@
           "notNull": false,
           "autoincrement": false
         },
-        "user_id": {
-          "name": "user_id",
-          "type": "text",
-          "primaryKey": false,
-          "notNull": true,
-          "autoincrement": false
-        },
         "color": {
           "name": "color",
           "type": "text",
           "primaryKey": false,
-          "notNull": true,
+          "notNull": false,
           "autoincrement": false
         },
         "created_at": {

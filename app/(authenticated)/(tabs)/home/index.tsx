@@ -1,4 +1,3 @@
-import { useDrizzleStudio } from 'expo-drizzle-studio-plugin';
 import React from 'react';
 import { Text, View } from 'react-native';
 

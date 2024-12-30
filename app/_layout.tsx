@@ -1,17 +1,19 @@
 import '../global.css';
 import 'expo-dev-client';
 import { ClerkProvider, ClerkLoaded, useAuth } from '@clerk/clerk-expo';
+import { ActionSheetProvider } from '@expo/react-native-action-sheet';
 import { ThemeProvider as NavThemeProvider } from '@react-navigation/native';
-import { drizzle } from 'drizzle-orm/expo-sqlite';
 import { useMigrations } from 'drizzle-orm/expo-sqlite/migrator';
-import { Stack, useNavigationContainerRef, usePathname, useRouter, useSegments } from 'expo-router';
-import { openDatabaseSync, SQLiteProvider } from 'expo-sqlite';
+import { useDrizzleStudio } from 'expo-drizzle-studio-plugin';
+import { Stack, usePathname, useRouter, useSegments } from 'expo-router';
+import { SQLiteProvider } from 'expo-sqlite';
 import { StatusBar } from 'expo-status-bar';
 import React, { Suspense, useEffect } from 'react';
 import { ActivityIndicator, LogBox, View } from 'react-native';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { Toaster } from 'sonner-native';
 
+import { db, expoDB } from '@/db/db';
 import migrations from '@/drizzle/migrations';
 import { useColorScheme, useInitialAndroidBarSync } from '@/lib/useColorScheme';
 import { NAV_THEME } from '@/theme';
@@ -75,11 +77,9 @@ function Loading() {
 }
 
 const RootLayout = () => {
-  const expoDB = openDatabaseSync('workouts.db');
-  const db = drizzle(expoDB);
   const { success } = useMigrations(db, migrations);
   const { colorScheme, isDarkColorScheme } = useColorScheme();
-
+  useDrizzleStudio(expoDB);
   useEffect(() => {
     if (!success) return;
     addDBData(db);
@@ -97,12 +97,14 @@ const RootLayout = () => {
               key={`root-status-bar-${isDarkColorScheme ? 'light' : 'dark'}`}
               style={isDarkColorScheme ? 'light' : 'dark'}
             />
-            <GestureHandlerRootView style={{ flex: 1 }}>
-              <Toaster />
-              <NavThemeProvider value={NAV_THEME[colorScheme]}>
-                <InitialLayout />
-              </NavThemeProvider>
-            </GestureHandlerRootView>
+            <ActionSheetProvider>
+              <GestureHandlerRootView style={{ flex: 1 }}>
+                <Toaster />
+                <NavThemeProvider value={NAV_THEME[colorScheme]}>
+                  <InitialLayout />
+                </NavThemeProvider>
+              </GestureHandlerRootView>
+            </ActionSheetProvider>
           </SQLiteProvider>
         </Suspense>
       </ClerkLoaded>

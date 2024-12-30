@@ -7,14 +7,12 @@ import { Text, View, ScrollView } from 'react-native';
 
 import RoutineCard from '@/components/RoutineCard';
 import { Button } from '@/components/nativewindui/Button';
-import { routines } from '@/db/schema';
-import { useDrizzleDb } from '@/lib/useDB';
+import { getRoutines } from '@/services/routines';
 
 const Workout = () => {
   const router = useRouter();
-  const drizzleDB = useDrizzleDb();
+  const { data } = useLiveQuery(getRoutines());
 
-  const { data } = useLiveQuery(drizzleDB.select().from(routines));
   const onPressNewRoutine = () => {
     Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
     router.push('/new-routine');

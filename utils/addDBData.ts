@@ -111,7 +111,6 @@ export const addDBData = async (db: ExpoSQLiteDatabase) => {
       name: 'Rutina 1',
       description: 'Ejercicios para la rutina',
       color: '#FF0000',
-      userId: 'user_2qOppBDjTIJTLyYU17pQZIKOcFd',
     },
   ]);
   AsyncStorage.setItemSync('initialized', 'true');

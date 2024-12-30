@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "health-habitz-app",
-    "slug": "health-habitz-app",
+    "slug": "health-habitz",
     "version": "1.0.0",
     "scheme": "health-habitz-app",
     "web": {
@@ -79,6 +79,15 @@
         "backgroundColor": "#ffffff"
       },
       "package": "com.anonymous.healthhabitzapp"
-    }
+    },
+    "extra": {
+      "router": {
+        "origin": false
+      },
+      "eas": {
+        "projectId": "2370d600-82ac-4c57-ab9a-e821903af693"
+      }
+    },
+    "owner": "chibek"
   }
 }
