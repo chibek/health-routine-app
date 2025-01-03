@@ -27,6 +27,7 @@
     "babel-plugin-module-resolver": "^5.0.2",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.0",
+    "dayjs": "^1.11.13",
     "drizzle-orm": "^0.38.0",
     "drizzle-zod": "^0.6.1",
     "expo": "~52.0.20",
@@ -66,7 +67,8 @@
     "tailwind-merge": "^2.2.1",
     "zeego": "^2.0.4",
     "zod": "^3.24.1",
-    "zustand": "^5.0.2"
+    "zustand": "^5.0.2",
+    "expo-checkbox": "~4.0.0"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0",

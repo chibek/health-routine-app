@@ -1,8 +1,9 @@
-import { sql } from 'drizzle-orm';
+import { relations, sql } from 'drizzle-orm';
 import { sqliteTable, text, integer } from 'drizzle-orm/sqlite-core';
 import { createSelectSchema, createInsertSchema } from 'drizzle-zod';
 import { z } from 'zod';
 
+// Routines table
 export const routines = sqliteTable(
   'routines',
   {
@@ -19,14 +20,11 @@ export const routines = sqliteTable(
   (t) => []
 );
 
-export const routinesSelectSchema = createSelectSchema(routines);
-export type routinesSelectSchemaType = z.infer<typeof routinesSelectSchema>;
+export const routinesRelations = relations(routines, ({ many }) => ({
+  exercises: many(exercisesToRoutine),
+}));
 
-export const routinesInsertSchema = createInsertSchema(routines, {
-  name: z.string().min(1, { message: 'Debes ingresar un nombre de rutina' }),
-});
-export type routinesInsertSchemaType = z.infer<typeof routinesInsertSchema>;
-
+// Exercises table
 export const exercises = sqliteTable(
   'exercises',
   {
@@ -42,43 +40,49 @@ export const exercises = sqliteTable(
   (t) => []
 );
 
-export const exercisesSelectSchema = createSelectSchema(exercises);
-export type exercisesSelectSchemaType = z.infer<typeof exercisesSelectSchema>;
+export const exercisesRelations = relations(exercises, ({ many }) => ({
+  routineExercises: many(exercisesToRoutine),
+}));
 
-export const exercisesInsertSchema = createInsertSchema(exercises);
-export type exercisesInsertSchemaType = z.infer<typeof exercisesInsertSchema>;
-
+// Junction table between routines and exercises
 export const exercisesToRoutine = sqliteTable(
   'exercises_routines',
   {
     id: integer().primaryKey({ autoIncrement: true }),
-    exercise_id: integer('exercises_id')
+    exerciseId: integer('exercise_id')
       .notNull()
-      .references(() => exercises.id),
-    routine_id: integer('routine_id')
+      .references(() => exercises.id, { onDelete: 'cascade' }),
+    routineId: integer('routine_id')
       .notNull()
-      .references(() => routines.id),
+      .references(() => routines.id, { onDelete: 'cascade' }),
   },
   (t) => []
 );
 
-export const exercisesToRoutineSelectSchema = createSelectSchema(exercisesToRoutine);
-export type exercisesToRoutineSelectSchemaType = z.infer<typeof exercisesToRoutineSelectSchema>;
+export const exercisesToRoutineRelations = relations(exercisesToRoutine, ({ one, many }) => ({
+  routine: one(routines, {
+    fields: [exercisesToRoutine.routineId],
+    references: [routines.id],
+  }),
+  exercise: one(exercises, {
+    fields: [exercisesToRoutine.exerciseId],
+    references: [exercises.id],
+  }),
+  sets: many(exerciseSets),
+}));
 
-export const exercisesToRoutineInsertSchema = createInsertSchema(exercisesToRoutine);
-export type exercisesToRoutineInsertSchemaType = z.infer<typeof exercisesToRoutineInsertSchema>;
-
+// Exercise sets table
 export const exerciseSets = sqliteTable(
   'exercise_sets',
   {
     id: integer().primaryKey({ autoIncrement: true }),
-    exercises_routine_id: integer('exercises_routine_id')
+    exercisesRoutineId: integer('exercises_routine_id')
       .notNull()
-      .references(() => exercisesToRoutine.id),
+      .references(() => exercisesToRoutine.id, { onDelete: 'cascade' }),
     type: text('type', { enum: ['default', 'warmup', 'dropset'] }).notNull(),
     reps: integer('reps'),
     weight: integer('weight'),
-    rest_seconds: integer('rest_seconds'),
+    restSeconds: integer('rest_seconds'),
     order: integer('order').notNull(),
     createdAt: text('created_at').default(sql`(CURRENT_TIMESTAMP)`),
     updatedAt: text('updated_at')
@@ -88,6 +92,32 @@ export const exerciseSets = sqliteTable(
   },
   (t) => []
 );
+
+export const exerciseSetsRelations = relations(exerciseSets, ({ one }) => ({
+  exerciseRoutine: one(exercisesToRoutine, {
+    fields: [exerciseSets.exercisesRoutineId],
+    references: [exercisesToRoutine.id],
+  }),
+}));
+
+// Schemas
+export const routinesSelectSchema = createSelectSchema(routines);
+export type routinesSelectSchemaType = z.infer<typeof routinesSelectSchema>;
+
+export const routinesInsertSchema = createInsertSchema(routines);
+export type routinesInsertSchemaType = z.infer<typeof routinesInsertSchema>;
+
+export const exercisesSelectSchema = createSelectSchema(exercises);
+export type exercisesSelectSchemaType = z.infer<typeof exercisesSelectSchema>;
+
+export const exercisesInsertSchema = createInsertSchema(exercises);
+export type exercisesInsertSchemaType = z.infer<typeof exercisesInsertSchema>;
+
+export const exercisesToRoutineSelectSchema = createSelectSchema(exercisesToRoutine);
+export type exercisesToRoutineSelectSchemaType = z.infer<typeof exercisesToRoutineSelectSchema>;
+
+export const exercisesToRoutineInsertSchema = createInsertSchema(exercisesToRoutine);
+export type exercisesToRoutineInsertSchemaType = z.infer<typeof exercisesToRoutineInsertSchema>;
 
 export const exerciseSetsSelectSchema = createSelectSchema(exerciseSets);
 export type exerciseSetsSelectSchemaType = z.infer<typeof exerciseSetsSelectSchema>;

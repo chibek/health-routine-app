@@ -1,39 +1,35 @@
-import { useActionSheet } from '@expo/react-native-action-sheet';
 import { Ionicons } from '@expo/vector-icons';
-import { useCallback } from 'react';
+import { useContext, useState } from 'react';
 import { Text, TextInput, TouchableOpacity, View } from 'react-native';
+import { useStore } from 'zustand';
 
-import { type exerciseSetsInsertSchemaType } from '@/db/schema';
-import { COLORS } from '@/theme/colors';
+import { exerciseSetsSelectSchemaType } from '@/db/schema';
+import { cn } from '@/lib/cn';
+import { SetsContext } from '@/stores/sets';
 
-type SetsRowProps = exerciseSetsInsertSchemaType & {
-  onUpdate: (field: 'weight' | 'reps', value: string) => void;
-  onDelete: () => void;
-};
-const SetsRow = ({ order, reps, weight, onUpdate, onDelete }: SetsRowProps) => {
-  const { showActionSheetWithOptions } = useActionSheet();
+type SetsRowProps = exerciseSetsSelectSchemaType;
+const SetsRow = ({ id, order, reps, weight }: SetsRowProps) => {
+  const [isChecked, setChecked] = useState(false);
+  const store = useContext(SetsContext);
+  if (!store) throw new Error('Missing SetsContext.Provider in the tree');
+  const updateSets = useStore(store, (s) => s.updateSets);
+
   const handleUpdateAction = (field: 'weight' | 'reps', value: string) => {
     if (/^\d+$/.test(value)) {
-      onUpdate(field, value);
+      updateSets({ field, value, id });
     }
   };
-  const handleActionSheet = useCallback(() => {
-    showActionSheetWithOptions(
-      {
-        options: ['Delete', 'Cancel'],
-        cancelButtonIndex: 1,
-        destructiveButtonIndex: 0,
-      },
-      (selectedIndex?: number) => {
-        if (selectedIndex === 0) onDelete();
-      }
-    );
-  }, [onDelete]);
+  const handleCompleteSet = () => {
+    setChecked((value) => !value);
+  };
 
   return (
     <View
-      className="flex-row items-center gap-6 py-4"
-      style={{ backgroundColor: order % 2 === 0 ? COLORS.light.grey5 : '#fff' }}>
+      className={cn(
+        'flex-row items-center gap-6 py-4',
+        isChecked && 'bg-green-100/80',
+        !isChecked && order % 2 === 0 && 'bg-gray-200'
+      )}>
       <Text className="h-8 w-20 text-center text-lg font-semibold">{order}</Text>
       <TextInput
         className="h-8 w-20 text-center text-lg font-semibold placeholder:text-black"
@@ -51,8 +47,10 @@ const SetsRow = ({ order, reps, weight, onUpdate, onDelete }: SetsRowProps) => {
         onChangeText={(value) => handleUpdateAction('reps', value)}
       />
       <View className="grow items-center">
-        <TouchableOpacity onPress={() => handleActionSheet()}>
-          <Ionicons name="trash-outline" style={{ color: COLORS.light.destructive }} size={26} />
+        <TouchableOpacity onPress={() => handleCompleteSet()}>
+          <View className={cn('size-6 rounded-lg bg-gray-400', isChecked && 'bg-green-500 ')}>
+            {isChecked ? <Ionicons name="checkmark" size={24} color="#fff" /> : null}
+          </View>
         </TouchableOpacity>
       </View>
     </View>

@@ -1,4 +1,6 @@
-import { exerciseSetsInsertSchemaType } from '@/db/schema';
+import { createContext } from 'react';
+
+import { exerciseSetsInsertSchemaType, exerciseSetsSelectSchemaType } from '@/db/schema';
 import { create } from '@/stores/generic';
 
 type RemoveSet = {
@@ -10,16 +12,27 @@ type UpdateSets = RemoveSet & {
   value: string;
 };
 
-type AddSet = exerciseSetsInsertSchemaType & {
+export type StoreSet = exerciseSetsInsertSchemaType & {
   exerciseId: number;
 };
 
 interface SetsState {
-  sets: AddSet[];
-  addSets: (by: AddSet[]) => void;
-  getSetsByExerciseId: (by: number) => AddSet[];
+  sets: StoreSet[];
+  addSets: (by: StoreSet[]) => void;
+  getSetsByExerciseId: (by: number) => StoreSet[];
   updateSets: (by: UpdateSets) => void;
   removeSet: (by: RemoveSet) => void;
+  removeAllSets: () => void;
+}
+
+interface SetProps {
+  sets: exerciseSetsSelectSchemaType[];
+}
+
+interface SetStateSelect extends SetProps {
+  addSets: (by: exerciseSetsSelectSchemaType[]) => void;
+  updateSets: (by: { id: number; field: 'weight' | 'reps'; value: string }) => void;
+  removeSet: (by: { id: number }) => void;
   removeAllSets: () => void;
 }
 
@@ -53,3 +66,32 @@ export const useSets = create<SetsState>()((set, get) => ({
       return { ...state, sets: reorderedSets };
     }),
 }));
+
+type SetsStore = ReturnType<typeof createSetsStore>;
+
+export const SetsContext = createContext<SetsStore | null>(null);
+
+export const createSetsStore = (initProps?: Partial<SetProps>) => {
+  const DEFAULT_PROPS: SetProps = {
+    sets: [],
+  };
+  return create<SetStateSelect>()((set) => ({
+    ...DEFAULT_PROPS,
+    ...initProps,
+    addSets: (newSets) => set((state) => ({ sets: [...state.sets, ...newSets] })),
+    updateSets: ({ id, field, value }) =>
+      set((state) => ({
+        sets: state.sets.map((set) =>
+          set.id === id
+            ? { ...set, [field]: value === '' || /^\d+$/.test(value) ? null : parseInt(value, 10) }
+            : set
+        ),
+      })),
+    removeAllSets: () => set({ sets: [] }),
+    removeSet: ({ id }) =>
+      set((state) => {
+        const updatedSets = state.sets.filter((set) => !(set.id === id));
+        return { ...state, sets: updatedSets };
+      }),
+  }));
+};

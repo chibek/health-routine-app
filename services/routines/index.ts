@@ -1,25 +1,29 @@
-import { ZodError } from 'zod';
+import { eq } from 'drizzle-orm';
 
 import { db } from '@/db/db';
 import {
   exerciseSets,
   exerciseSetsInsertSchema,
-  exerciseSetsInsertSchemaType,
-  exercisesInsertSchemaType,
+  exercisesSelectSchemaType,
   exercisesToRoutine,
   exercisesToRoutineInsertSchema,
   routines,
   routinesInsertSchemaType,
 } from '@/db/schema';
+import { StoreSet } from '@/stores/sets';
 
 export const getRoutines = () => {
   return db.select().from(routines);
 };
 
+export const deleteRoutine = async (id: number) => {
+  return await db.delete(routines).where(eq(routines.id, id));
+};
+
 type AddRoutineType = {
   insertRoutine: routinesInsertSchemaType;
-  insertExercises: exercisesInsertSchemaType[];
-  insertSets: exerciseSetsInsertSchemaType[];
+  insertExercises: exercisesSelectSchemaType[];
+  insertSets: StoreSet[];
 };
 
 type Response = {
@@ -31,32 +35,37 @@ export const insertRoutine = async ({
   insertExercises,
   insertSets,
 }: AddRoutineType): Promise<Response> => {
-  await db.transaction(async (tx) => {
-    const routineInserted = await tx
-      .insert(routines)
-      .values([insertRoutine])
-      .returning({ routineId: routines.id });
+  try {
+    await db.transaction(async (tx) => {
+      const routineInserted = await tx
+        .insert(routines)
+        .values([insertRoutine])
+        .returning({ routineId: routines.id });
 
-    for (const exercise of insertExercises) {
-      const exerciseParsed = exercisesToRoutineInsertSchema.parse({
-        exercise_id: exercise.id,
-        routine_id: routineInserted[0].routineId,
-      });
-
-      const exercisesToRoutineInserted = await tx
-        .insert(exercisesToRoutine)
-        .values(exerciseParsed)
-        .returning({ exercisesToRoutineId: exercisesToRoutine.id });
-
-      for (const set of insertSets) {
-        const setParsed = exerciseSetsInsertSchema.parse({
-          ...set,
-          exercises_routine_id: exercisesToRoutineInserted[0].exercisesToRoutineId,
+      for (const exercise of insertExercises) {
+        const exerciseParsed = exercisesToRoutineInsertSchema.parse({
+          exerciseId: exercise.id,
+          routineId: routineInserted[0].routineId,
         });
 
-        await tx.insert(exerciseSets).values(setParsed).returning({ setId: exerciseSets.id });
+        const exercisesToRoutineInserted = await tx
+          .insert(exercisesToRoutine)
+          .values(exerciseParsed)
+          .returning({ exercisesToRoutineId: exercisesToRoutine.id });
+        for (const set of insertSets) {
+          if (set.exerciseId === exercise.id) {
+            const setParsed = exerciseSetsInsertSchema.parse({
+              ...set,
+              exercisesRoutineId: exercisesToRoutineInserted[0].exercisesToRoutineId,
+            });
+            await tx.insert(exerciseSets).values(setParsed).returning({ setId: exerciseSets.id });
+          }
+        }
       }
-    }
-  });
-  return { success: true };
+    });
+    return { success: true };
+  } catch (e) {
+    console.log('ERROR: ', e);
+    return { success: false };
+  }
 };

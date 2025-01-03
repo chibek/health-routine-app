@@ -1,11 +1,12 @@
 import { ExpoSQLiteDatabase } from 'drizzle-orm/expo-sqlite';
 import AsyncStorage from 'expo-sqlite/kv-store';
 
+import * as schema from '@/db/schema';
 import { exercises, routines } from '@/db/schema';
 
-export const addDBData = async (db: ExpoSQLiteDatabase) => {
+export const addDBData = async (db: ExpoSQLiteDatabase<typeof schema>) => {
   const value = AsyncStorage.getItemSync('initialized');
-  if (value) return;
+  if (value === 'true') return;
 
   await db.insert(exercises).values([
     {

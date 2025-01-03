@@ -1,5 +1,6 @@
 import { Ionicons } from '@expo/vector-icons';
 import { zodResolver } from '@hookform/resolvers/zod';
+import * as Haptics from 'expo-haptics';
 import { Link, Stack, useRouter } from 'expo-router';
 import React, { useEffect } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
@@ -10,7 +11,7 @@ import { z } from 'zod';
 
 import { CustomTextInput } from '@/components/CustomTextInput';
 import EmptyExercises from '@/components/exercises/EmptyExercises';
-import ExerciseCard from '@/components/exercises/ExerciseCard';
+import ExerciseCard from '@/components/exercises/NewExerciseCard';
 import { Button } from '@/components/nativewindui/Button';
 import { routinesInsertSchema } from '@/db/schema';
 import { insertRoutine } from '@/services/routines';
@@ -33,11 +34,16 @@ const NewRoutine = () => {
     },
   });
   const onSubmit: SubmitHandler<FormData> = async (data) => {
-    await insertRoutine({
+    const response = await insertRoutine({
       insertRoutine: data,
       insertExercises: exercises,
       insertSets: sets,
     });
+    if (!response.success) {
+      toast.error('Error al crear rutina');
+      router.dismiss();
+    }
+    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
     toast.success('Rutina creada exitosamente');
     router.dismiss();
   };
