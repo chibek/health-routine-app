@@ -6,4 +6,4 @@ export const DEFAULT_SET = {
   reps: undefined,
   weight: undefined,
   rest_seconds: undefined,
-} as exerciseSetsInsertSchemaType;
+} as Omit<exerciseSetsInsertSchemaType, 'exercisesRoutineId'>;

@@ -25,17 +25,6 @@ interface SetsState {
   removeAllSets: () => void;
 }
 
-interface SetProps {
-  sets: exerciseSetsSelectSchemaType[];
-}
-
-interface SetStateSelect extends SetProps {
-  addSets: (by: exerciseSetsSelectSchemaType[]) => void;
-  updateSets: (by: { id: number; field: 'weight' | 'reps'; value: string }) => void;
-  removeSet: (by: { id: number }) => void;
-  removeAllSets: () => void;
-}
-
 export const useSets = create<SetsState>()((set, get) => ({
   sets: [],
   addSets: (newSets) => set((state) => ({ sets: [...state.sets, ...newSets] })),
@@ -67,9 +56,20 @@ export const useSets = create<SetsState>()((set, get) => ({
     }),
 }));
 
-type SetsStore = ReturnType<typeof createSetsStore>;
+//Provider
+interface SetProps {
+  sets: exerciseSetsSelectSchemaType[];
+}
+
+interface SetStateSelect extends SetProps {
+  addSets: (by: exerciseSetsSelectSchemaType[]) => void;
+  updateSets: (by: { id: number; field: 'weight' | 'reps'; value: string }) => void;
+  removeSet: (by: { id: number }) => void;
+  removeAllSets: () => void;
+}
 
 export const SetsContext = createContext<SetsStore | null>(null);
+type SetsStore = ReturnType<typeof createSetsStore>;
 
 export const createSetsStore = (initProps?: Partial<SetProps>) => {
   const DEFAULT_PROPS: SetProps = {

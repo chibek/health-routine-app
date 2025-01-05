@@ -39,7 +39,13 @@ const NewExerciseCard = ({ name, id }: NewExerciseCardProps) => {
         size="lg"
         className="w-full"
         onPress={() =>
-          addSets([{ ...DEFAULT_SET, exerciseId: id, order: filteredSets.length + 1 }])
+          addSets([
+            {
+              ...DEFAULT_SET,
+              exerciseId: id,
+              order: filteredSets.length + 1,
+            },
+          ])
         }>
         <Ionicons name="add-circle-outline" size={24} />
         <Text>Agregar serie</Text>

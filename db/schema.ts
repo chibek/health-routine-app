@@ -121,6 +121,9 @@ export type exercisesToRoutineInsertSchemaType = z.infer<typeof exercisesToRouti
 
 export const exerciseSetsSelectSchema = createSelectSchema(exerciseSets);
 export type exerciseSetsSelectSchemaType = z.infer<typeof exerciseSetsSelectSchema>;
+export type TypeEnum = exerciseSetsSelectSchemaType['type'];
 
-export const exerciseSetsInsertSchema = createInsertSchema(exerciseSets);
+export const exerciseSetsInsertSchema = createInsertSchema(exerciseSets).partial({
+  exercisesRoutineId: true,
+});
 export type exerciseSetsInsertSchemaType = z.infer<typeof exerciseSetsInsertSchema>;

@@ -1,7 +1,7 @@
 import { eq } from 'drizzle-orm';
 
 import { db } from '@/db/db';
-import { exerciseSets } from '@/db/schema';
+import { exerciseSets, exerciseSetsInsertSchemaType } from '@/db/schema';
 
 type UpdateSetType = {
   id: number;
@@ -18,6 +18,28 @@ export const updateSet = async ({ id, reps, weight }: UpdateSetType) => {
   if (weight !== undefined) {
     updateData.weight = weight;
   }
-
   await db.update(exerciseSets).set(updateData).where(eq(exerciseSets.id, id));
+};
+
+export const addSet = async ({
+  exercisesRoutineId,
+  order,
+  reps,
+  weight,
+  type = 'default',
+}: exerciseSetsInsertSchemaType) => {
+  return await db
+    .insert(exerciseSets)
+    .values({
+      type,
+      exercisesRoutineId,
+      order,
+      reps,
+      weight,
+    })
+    .returning();
+};
+
+export const deleteSet = async (id: number) => {
+  await db.delete(exerciseSets).where(eq(exerciseSets.id, id));
 };

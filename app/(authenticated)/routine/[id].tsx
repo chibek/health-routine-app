@@ -1,7 +1,8 @@
 import { eq } from 'drizzle-orm';
 import { useLiveQuery } from 'drizzle-orm/expo-sqlite';
+import * as Haptics from 'expo-haptics';
 import { useLocalSearchParams, useRouter } from 'expo-router';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { ScrollView, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
@@ -10,6 +11,7 @@ import ExerciseCard from '@/components/exercises/ExerciseCard';
 import { Button } from '@/components/nativewindui/Button';
 import { db } from '@/db/db';
 import { routines } from '@/db/schema';
+import { resetAllStores } from '@/stores/generic';
 
 const RoutineView = () => {
   const { id } = useLocalSearchParams<{ id: string }>();
@@ -27,6 +29,13 @@ const RoutineView = () => {
     })
   );
 
+  // Detect when the screen component is unmounted
+  useEffect(() => {
+    return () => {
+      resetAllStores();
+    };
+  }, []);
+
   //TODO: Handle empty data
   if (!data || !data.exercises.length) return null;
 
@@ -39,6 +48,7 @@ const RoutineView = () => {
             <ExerciseCard
               key={exercise.id}
               {...exercise}
+              exercisesRoutineId={id}
               sets={sets.filter((set) => set.exercisesRoutineId === id)}
             />
           ))}
@@ -50,6 +60,11 @@ const RoutineView = () => {
 
 const Header: React.FC = () => {
   const router = useRouter();
+  const handleFinishRoutine = () => {
+    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+    router.back();
+  };
+
   return (
     <SafeAreaView edges={['top']} className="sticky top-0 border-b-4 pb-4">
       <View className="flex-row items-center justify-between  px-4">
@@ -58,7 +73,7 @@ const Header: React.FC = () => {
           <Clock />
         </View>
 
-        <Button onPress={() => router.dismiss()} size="lg">
+        <Button onPress={() => handleFinishRoutine()} size="lg">
           <Text>Terminar</Text>
         </Button>
       </View>
