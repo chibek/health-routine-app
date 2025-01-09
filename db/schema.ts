@@ -100,6 +100,38 @@ export const exerciseSetsRelations = relations(exerciseSets, ({ one }) => ({
   }),
 }));
 
+export const workoutHistory = sqliteTable(
+  'workout_history',
+  {
+    id: integer().primaryKey({ autoIncrement: true }),
+    routineId: integer('routine_id')
+      .notNull()
+      .references(() => routines.id, { onDelete: 'cascade' }),
+    exerciseSetId: integer('exercise_set_id')
+      .notNull()
+      .references(() => exerciseSets.id, { onDelete: 'cascade' }),
+    notes: text('notes'),
+    createdAt: text('created_at').default(sql`(CURRENT_TIMESTAMP)`),
+    updatedAt: text('updated_at')
+      .notNull()
+      .default(sql`(CURRENT_TIMESTAMP)`)
+      .$onUpdate(() => sql`(CURRENT_TIMESTAMP)`),
+  },
+  (t) => []
+);
+
+// Relations
+export const workoutHistoryRelations = relations(workoutHistory, ({ one }) => ({
+  routine: one(routines, {
+    fields: [workoutHistory.routineId],
+    references: [routines.id],
+  }),
+  exerciseSet: one(exerciseSets, {
+    fields: [workoutHistory.exerciseSetId],
+    references: [exerciseSets.id],
+  }),
+}));
+
 // Schemas
 export const routinesSelectSchema = createSelectSchema(routines);
 export type routinesSelectSchemaType = z.infer<typeof routinesSelectSchema>;
@@ -123,7 +155,10 @@ export const exerciseSetsSelectSchema = createSelectSchema(exerciseSets);
 export type exerciseSetsSelectSchemaType = z.infer<typeof exerciseSetsSelectSchema>;
 export type TypeEnum = exerciseSetsSelectSchemaType['type'];
 
-export const exerciseSetsInsertSchema = createInsertSchema(exerciseSets).partial({
-  exercisesRoutineId: true,
-});
+export const exerciseSetsInsertSchema = createInsertSchema(exerciseSets);
 export type exerciseSetsInsertSchemaType = z.infer<typeof exerciseSetsInsertSchema>;
+export const workoutLogsSelectSchema = createSelectSchema(workoutHistory);
+export type workoutLogsSelectSchemaType = z.infer<typeof workoutLogsSelectSchema>;
+
+export const workoutLogsInsertSchema = createInsertSchema(workoutHistory);
+export type workoutLogsInsertSchemaType = z.infer<typeof workoutLogsInsertSchema>;

@@ -1,5 +1,6 @@
 import dayjs from 'dayjs';
-import React, { useRef, useCallback } from 'react';
+import { useLiveQuery } from 'drizzle-orm/expo-sqlite';
+import React, { useCallback } from 'react';
 import { StyleSheet, Text } from 'react-native';
 import {
   ExpandableCalendar,
@@ -8,6 +9,10 @@ import {
   WeekCalendar,
 } from 'react-native-calendars';
 import { MarkedDates } from 'react-native-calendars/src/types';
+
+import { useSpanishLocale } from '@/hooks/useSpanishCalendar';
+import { getWorkoutHistoryService } from '@/services/workout-history';
+import { COLORS } from '@/theme/colors';
 
 const ITEMS: any[] = [];
 
@@ -19,22 +24,15 @@ interface Props {
 ExpandableCalendar.defaultProps = undefined;
 
 const Home = (props: Props) => {
+  useSpanishLocale();
+  const { data } = useLiveQuery(getWorkoutHistoryService(), []);
+  console.log({ data });
   const { weekView } = props;
   const markedDates: MarkedDates = {};
-  const todayBtnTheme = useRef({
-    todayButtonTextColor: '#fff',
-  });
-
-  // const onDateChanged = useCallback((date, updateSource) => {
-  //   console.log('ExpandableCalendarScreen onDateChanged: ', date, updateSource);
-  // }, []);
-
-  // const onMonthChange = useCallback(({dateString}) => {
-  //   console.log('ExpandableCalendarScreen onMonthChange: ', dateString);
-  // }, []);
+  // const [agendaItems, setAgendaItems] = useState<AgendaItem[]>([]);
 
   const renderItem = useCallback(({ item }: any) => {
-    return <Text>Hola</Text>;
+    return <Text>{JSON.stringify(item)}</Text>;
   }, []);
 
   return (
@@ -44,34 +42,27 @@ const Home = (props: Props) => {
       // onMonthChange={onMonthChange}
       showTodayButton
       // disabledOpacity={0.6}
-      theme={todayBtnTheme.current}
+      theme={{
+        todayButtonTextColor: COLORS.light.primary,
+      }}
+
       // todayBottomMargin={16}
     >
       {weekView ? (
         <WeekCalendar firstDay={1} markedDates={markedDates} />
       ) : (
         <ExpandableCalendar
-          // horizontal={false}
-          // hideArrows
-          // disablePan
-          // hideKnob
-          // initialPosition={ExpandableCalendar.positions.OPEN}
           // calendarStyle={styles.calendar}
-          // headerStyle={styles.header} // for horizontal only
-          // disableWeekScroll
+          // headerStyle={styles.header}
           // disableAllTouchEventsForDisabledDays
+          closeOnDayPress
           firstDay={1}
           markedDates={markedDates}
-          // leftArrowImageSource={leftArrowIcon}
-          // rightArrowImageSource={rightArrowIcon}
-          // animateScroll
-          // closeOnDayPress={false}
         />
       )}
       <AgendaList
         sections={ITEMS}
         renderItem={renderItem}
-        // scrollToNextEvent
         sectionStyle={styles.section}
         // dayFormat={'yyyy-MM-d'}
       />

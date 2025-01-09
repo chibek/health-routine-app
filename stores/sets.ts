@@ -1,6 +1,5 @@
-import { createContext } from 'react';
-
-import { exerciseSetsInsertSchemaType, exerciseSetsSelectSchemaType } from '@/db/schema';
+import { exerciseSetsInsertSchemaType } from '@/db/schema';
+import { SetProps, SetStateSelect } from '@/provider/SetProvider';
 import { create } from '@/stores/generic';
 
 type RemoveSet = {
@@ -57,21 +56,7 @@ export const useSets = create<SetsState>()((set, get) => ({
 }));
 
 //Provider
-interface SetProps {
-  sets: exerciseSetsSelectSchemaType[];
-}
-
-interface SetStateSelect extends SetProps {
-  addSets: (by: exerciseSetsSelectSchemaType[]) => void;
-  updateSets: (by: { id: number; field: 'weight' | 'reps'; value: string }) => void;
-  removeSet: (by: { id: number }) => void;
-  removeAllSets: () => void;
-}
-
-export const SetsContext = createContext<SetsStore | null>(null);
-type SetsStore = ReturnType<typeof createSetsStore>;
-
-export const createSetsStore = (initProps?: Partial<SetProps>) => {
+export const initializeSetsStore = (initProps?: Partial<SetProps>) => {
   const DEFAULT_PROPS: SetProps = {
     sets: [],
   };
