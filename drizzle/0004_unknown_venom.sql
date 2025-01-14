@@ -1,0 +1,1 @@
+ALTER TABLE `workout_history` ADD `train_duration` integer;

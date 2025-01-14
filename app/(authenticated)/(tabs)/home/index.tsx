@@ -26,7 +26,6 @@ ExpandableCalendar.defaultProps = undefined;
 const Home = (props: Props) => {
   useSpanishLocale();
   const { data } = useLiveQuery(getWorkoutHistoryService(), []);
-  console.log({ data });
   const { weekView } = props;
   const markedDates: MarkedDates = {};
   // const [agendaItems, setAgendaItems] = useState<AgendaItem[]>([]);

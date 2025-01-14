@@ -90,7 +90,6 @@ const Header: React.FC<{ routineId: number }> = ({ routineId }) => {
     await deleteSets(removedSets);
     const insertedSets = await insertSets(pendingSets);
     const updatedSets = await updateSets(setsByExercise);
-    console.log({ insertedSets, updatedSets });
     [...updatedSets, ...insertedSets].forEach(
       async (s) =>
         await createWorkoutHistoryService({
