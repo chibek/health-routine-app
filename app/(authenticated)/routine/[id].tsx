@@ -3,8 +3,9 @@ import { eq } from 'drizzle-orm';
 import { useLiveQuery } from 'drizzle-orm/expo-sqlite';
 import * as Haptics from 'expo-haptics';
 import { useLocalSearchParams, useRouter } from 'expo-router';
-import React, { useCallback, useEffect } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { ScrollView, Text, View } from 'react-native';
+import { TextInput } from 'react-native-gesture-handler';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 import Clock from '@/components/Clock';
@@ -14,11 +15,13 @@ import { db } from '@/db/db';
 import { routines } from '@/db/schema';
 import { deleteSets, insertSets, updateSets } from '@/services/sets';
 import { createWorkoutHistoryService } from '@/services/workout-history';
+import { useClockStore } from '@/stores/clock';
 import { resetAllStores } from '@/stores/generic';
 import { useSetsStore } from '@/stores/selectSets';
 
 const RoutineView = () => {
   const router = useRouter();
+  const [note, setNote] = useState<string | undefined>(undefined);
   const { id } = useLocalSearchParams<{ id: string }>();
   const { showActionSheetWithOptions } = useActionSheet();
   const { data } = useLiveQuery(
@@ -60,7 +63,15 @@ const RoutineView = () => {
 
   return (
     <View className="flex-1 bg-white">
-      <Header routineId={data.id} />
+      <Header routineId={data.id} note={note} />
+      <TextInput
+        value={note}
+        onChangeText={setNote}
+        className="mt-4 max-h-14 p-2"
+        multiline
+        placeholderTextColor="#9A9A9A"
+        placeholder="Agregar notas aqui..."
+      />
       <ScrollView>
         <View className="flex-1 gap-3 py-4">
           {data.exercises.map(({ exercise, sets, id }) => (
@@ -82,9 +93,10 @@ const RoutineView = () => {
   );
 };
 
-const Header: React.FC<{ routineId: number }> = ({ routineId }) => {
+const Header: React.FC<{ routineId: number; note?: string }> = ({ routineId, note }) => {
   const router = useRouter();
   const { setsByExercise, pendingSets, removedSets } = useSetsStore((s) => s);
+  const clock = useClockStore((state) => state.clocks['training_time']);
 
   const handleFinishRoutine = async () => {
     await deleteSets(removedSets);
@@ -95,7 +107,8 @@ const Header: React.FC<{ routineId: number }> = ({ routineId }) => {
         await createWorkoutHistoryService({
           routineId,
           exerciseSetId: s.id,
-          notes: '',
+          notes: note,
+          trainDuration: clock.elapsedTime,
         })
     );
     Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
@@ -105,11 +118,16 @@ const Header: React.FC<{ routineId: number }> = ({ routineId }) => {
   return (
     <SafeAreaView edges={['top']} className="sticky top-0 border-b-4 pb-4">
       <View className="flex-row items-center justify-between  px-4">
-        <View className="flex-row items-center gap-2">
-          <Text>Duracion: </Text>
-          <Clock />
+        <View className="flex items-center gap-2">
+          <View className="flex-row items-center gap-2">
+            <Text>Tiempo:</Text>
+            <Clock className="min-w-[70px] text-xl font-bold" id="training_time" />
+          </View>
+          <View className="flex-row items-center gap-2">
+            <Text>Set:</Text>
+            <Clock className="min-w-[70px] text-xs" id="set_time" />
+          </View>
         </View>
-
         <Button onPress={() => handleFinishRoutine()} size="lg">
           <Text>Terminar</Text>
         </Button>

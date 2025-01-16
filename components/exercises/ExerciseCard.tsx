@@ -39,8 +39,8 @@ const ExerciseCard = ({ id, exercisesRoutineId, name, sets: selectSets }: Exerci
     <LayoutAnimationConfig>
       <Animated.View className="flex gap-6 bg-background">
         <View className="flex flex-row items-center gap-2">
-          <Image src="https://picsum.photos/200" className="aspect-square size-16" />
-          <Text>{name}</Text>
+          <Image src="https://picsum.photos/200" className="aspect-square size-16 rounded-lg" />
+          <Text className="text-xl font-bold">{name}</Text>
         </View>
         <View>
           <View className="flex-row items-center gap-6">
@@ -52,6 +52,8 @@ const ExerciseCard = ({ id, exercisesRoutineId, name, sets: selectSets }: Exerci
             <SetsRow
               key={set.id}
               {...set}
+              weight={undefined}
+              reps={undefined}
               exerciseId={id}
               order={index + 1}
               oldReps={selectSets.find((s) => s.id === set.id)?.reps ?? undefined}

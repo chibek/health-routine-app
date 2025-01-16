@@ -2,14 +2,14 @@ import dayjs from 'dayjs';
 import { eq, gt } from 'drizzle-orm';
 
 import { db } from '@/db/db';
-import {
-  exercises,
-  exerciseSets,
-  exercisesToRoutine,
-  routines,
-  workoutHistory,
-  workoutLogsInsertSchemaType,
-} from '@/db/schema';
+import { routines, workoutHistory, workoutLogsInsertSchemaType } from '@/db/schema';
+
+export type WorkoutHistoryService = {
+  workoutHistoryId: number;
+  routineName: string | null;
+  trainDuration: number | null;
+  createdAt: string | null;
+};
 
 export const getWorkoutHistoryService = () => {
   const today = dayjs();
@@ -19,15 +19,11 @@ export const getWorkoutHistoryService = () => {
     .select({
       workoutHistoryId: workoutHistory.id,
       routineName: routines.name,
-      exerciseName: exercises.name,
-      reps: exerciseSets.reps,
-      weight: exerciseSets.weight,
+      createdAt: workoutHistory.createdAt,
+      trainDuration: workoutHistory.trainDuration,
     })
     .from(workoutHistory)
     .leftJoin(routines, eq(workoutHistory.routineId, routines.id))
-    .leftJoin(exerciseSets, eq(workoutHistory.exerciseSetId, exerciseSets.id))
-    .leftJoin(exercisesToRoutine, eq(exerciseSets.exercisesRoutineId, exercisesToRoutine.id))
-    .leftJoin(exercises, eq(exercisesToRoutine.exerciseId, exercises.id))
     .where(gt(workoutHistory.createdAt, twoWeeksAgo.toISOString()));
 };
 
@@ -35,12 +31,14 @@ export const createWorkoutHistoryService = async ({
   exerciseSetId,
   routineId,
   notes,
+  trainDuration = 0,
 }: workoutLogsInsertSchemaType) => {
   try {
     await db.insert(workoutHistory).values({
       exerciseSetId,
       routineId,
       notes,
+      trainDuration,
     });
   } catch (e) {
     console.log(e);

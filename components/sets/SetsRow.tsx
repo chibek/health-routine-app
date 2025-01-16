@@ -9,6 +9,7 @@ import Animated, { FadeOutLeft } from 'react-native-reanimated';
 import RightAction from '@/components/SwipeableRow';
 import { exerciseSetsInsertSchemaType } from '@/db/schema';
 import { cn } from '@/lib/cn';
+import { useClockStore } from '@/stores/clock';
 import { useSetsStore } from '@/stores/selectSets';
 import { COLORS } from '@/theme/colors';
 
@@ -32,6 +33,7 @@ const SetsRow: FC<SetsRowProps> = ({
   const reanimatedRef = useRef<SwipeableMethods>(null);
   const { updateSet, removeSet } = useSetsStore((s) => s);
   const [isChecked, setChecked] = useState(false);
+  const resetClock = useClockStore((state) => state.resetClock);
 
   // Helper to determine if we're dealing with a temporary or saved set
   const setId = 'tempId' in set ? set.tempId : set.id;
@@ -50,6 +52,7 @@ const SetsRow: FC<SetsRowProps> = ({
   };
 
   const handleCompleteSet = () => {
+    resetClock('set_time');
     setChecked((value) => !value);
   };
 

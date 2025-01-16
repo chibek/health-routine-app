@@ -1,5 +1,5 @@
 import { relations, sql } from 'drizzle-orm';
-import { sqliteTable, text, integer } from 'drizzle-orm/sqlite-core';
+import { sqliteTable, text, integer, primaryKey } from 'drizzle-orm/sqlite-core';
 import { createSelectSchema, createInsertSchema } from 'drizzle-zod';
 import { z } from 'zod';
 
@@ -40,8 +40,43 @@ export const exercises = sqliteTable(
   (t) => []
 );
 
+export const categories = sqliteTable(
+  'categories',
+  {
+    id: integer().primaryKey({ autoIncrement: true }),
+    name: text('name').notNull(),
+    description: text('description'),
+    createdAt: text('created_at').default(sql`(CURRENT_TIMESTAMP)`),
+    updatedAt: text('updated_at')
+      .notNull()
+      .default(sql`(CURRENT_TIMESTAMP)`)
+      .$onUpdate(() => sql`(CURRENT_TIMESTAMP)`),
+  },
+  (t) => []
+);
+
+export const exerciseCategories = sqliteTable(
+  'exercise_categories',
+  {
+    exerciseId: integer('exercise_id')
+      .notNull()
+      .references(() => exercises.id, { onDelete: 'cascade' }),
+    categoryId: integer('category_id')
+      .notNull()
+      .references(() => categories.id, { onDelete: 'cascade' }),
+  },
+  (t) => ({
+    pk: primaryKey({ columns: [t.exerciseId, t.categoryId] }),
+  })
+);
+
+export const categoriesRelations = relations(categories, ({ many }) => ({
+  exercises: many(exercises),
+}));
+
 export const exercisesRelations = relations(exercises, ({ many }) => ({
   routineExercises: many(exercisesToRoutine),
+  categories: many(categories),
 }));
 
 // Junction table between routines and exercises
@@ -110,6 +145,7 @@ export const workoutHistory = sqliteTable(
     exerciseSetId: integer('exercise_set_id')
       .notNull()
       .references(() => exerciseSets.id, { onDelete: 'cascade' }),
+    trainDuration: integer('train_duration'),
     notes: text('notes'),
     createdAt: text('created_at').default(sql`(CURRENT_TIMESTAMP)`),
     updatedAt: text('updated_at')
