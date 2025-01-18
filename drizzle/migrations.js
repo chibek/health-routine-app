@@ -6,6 +6,8 @@ import m0001 from './0001_motionless_gressill.sql';
 import m0002 from './0002_bouncy_gargoyle.sql';
 import m0003 from './0003_overrated_spitfire.sql';
 import m0004 from './0004_unknown_venom.sql';
+import m0005 from './0005_smart_red_wolf.sql';
+import m0006 from './0006_faulty_post.sql';
 
   export default {
     journal,
@@ -14,7 +16,9 @@ import m0004 from './0004_unknown_venom.sql';
 m0001,
 m0002,
 m0003,
-m0004
+m0004,
+m0005,
+m0006
     }
   }
   

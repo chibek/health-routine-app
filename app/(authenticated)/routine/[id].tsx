@@ -1,10 +1,11 @@
+import { KeyboardAwareScrollView } from '@codler/react-native-keyboard-aware-scroll-view';
 import { useActionSheet } from '@expo/react-native-action-sheet';
 import { eq } from 'drizzle-orm';
 import { useLiveQuery } from 'drizzle-orm/expo-sqlite';
 import * as Haptics from 'expo-haptics';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import React, { useCallback, useEffect, useState } from 'react';
-import { ScrollView, Text, View } from 'react-native';
+import { Text, View } from 'react-native';
 import { TextInput } from 'react-native-gesture-handler';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
@@ -72,7 +73,7 @@ const RoutineView = () => {
         placeholderTextColor="#9A9A9A"
         placeholder="Agregar notas aqui..."
       />
-      <ScrollView>
+      <KeyboardAwareScrollView>
         <View className="flex-1 gap-3 py-4">
           {data.exercises.map(({ exercise, sets, id }) => (
             <ExerciseCard
@@ -88,7 +89,7 @@ const RoutineView = () => {
             <Text className="font-bold text-destructive">Descartar Entreno</Text>
           </Button>
         </SafeAreaView>
-      </ScrollView>
+      </KeyboardAwareScrollView>
     </View>
   );
 };

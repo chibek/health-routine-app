@@ -1,5 +1,5 @@
 import { relations, sql } from 'drizzle-orm';
-import { sqliteTable, text, integer, primaryKey } from 'drizzle-orm/sqlite-core';
+import { sqliteTable, text, integer } from 'drizzle-orm/sqlite-core';
 import { createSelectSchema, createInsertSchema } from 'drizzle-zod';
 import { z } from 'zod';
 
@@ -31,6 +31,7 @@ export const exercises = sqliteTable(
     id: integer().primaryKey({ autoIncrement: true }),
     name: text('name').notNull(),
     description: text('description'),
+    categoryId: integer('category_id').references(() => categories.id, { onDelete: 'set null' }),
     createdAt: text('created_at').default(sql`(CURRENT_TIMESTAMP)`),
     updatedAt: text('updated_at')
       .notNull()
@@ -45,7 +46,6 @@ export const categories = sqliteTable(
   {
     id: integer().primaryKey({ autoIncrement: true }),
     name: text('name').notNull(),
-    description: text('description'),
     createdAt: text('created_at').default(sql`(CURRENT_TIMESTAMP)`),
     updatedAt: text('updated_at')
       .notNull()
@@ -65,9 +65,7 @@ export const exerciseCategories = sqliteTable(
       .notNull()
       .references(() => categories.id, { onDelete: 'cascade' }),
   },
-  (t) => ({
-    pk: primaryKey({ columns: [t.exerciseId, t.categoryId] }),
-  })
+  (t) => []
 );
 
 export const categoriesRelations = relations(categories, ({ many }) => ({
@@ -76,7 +74,18 @@ export const categoriesRelations = relations(categories, ({ many }) => ({
 
 export const exercisesRelations = relations(exercises, ({ many }) => ({
   routineExercises: many(exercisesToRoutine),
-  categories: many(categories),
+  categories: many(exerciseCategories),
+}));
+
+export const exerciseCategoriesRelations = relations(exerciseCategories, ({ one }) => ({
+  exercise: one(exercises, {
+    fields: [exerciseCategories.exerciseId],
+    references: [exercises.id],
+  }),
+  category: one(categories, {
+    fields: [exerciseCategories.categoryId],
+    references: [categories.id],
+  }),
 }));
 
 // Junction table between routines and exercises
@@ -198,3 +207,13 @@ export type workoutLogsSelectSchemaType = z.infer<typeof workoutLogsSelectSchema
 
 export const workoutLogsInsertSchema = createInsertSchema(workoutHistory);
 export type workoutLogsInsertSchemaType = z.infer<typeof workoutLogsInsertSchema>;
+
+export const categoriesInsertSchema = createInsertSchema(categories);
+export type categoriesInsertSchemaType = z.infer<typeof categoriesInsertSchema>;
+
+export const categoriesSelectSchema = createSelectSchema(categories);
+export type categoriesSelectSchemaType = z.infer<typeof categoriesSelectSchema>;
+
+export type InsertExercise = exercisesInsertSchemaType & {
+  categoryId?: number;
+};

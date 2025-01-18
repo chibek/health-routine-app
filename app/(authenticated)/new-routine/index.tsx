@@ -1,3 +1,4 @@
+import { KeyboardAwareScrollView } from '@codler/react-native-keyboard-aware-scroll-view';
 import { Ionicons } from '@expo/vector-icons';
 import { zodResolver } from '@hookform/resolvers/zod';
 import * as Haptics from 'expo-haptics';
@@ -5,21 +6,19 @@ import { Link, Stack, useRouter } from 'expo-router';
 import React, { useEffect } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { View, Text } from 'react-native';
-import { ScrollView } from 'react-native-gesture-handler';
 import { toast } from 'sonner-native';
-import { z } from 'zod';
 
 import { CustomTextInput } from '@/components/CustomTextInput';
 import EmptyExercises from '@/components/exercises/EmptyExercises';
-import ExerciseCard from '@/components/exercises/NewExerciseCard';
+import NewExerciseCard from '@/components/exercises/NewExerciseCard';
 import { Button } from '@/components/nativewindui/Button';
-import { routinesInsertSchema } from '@/db/schema';
+import { routinesInsertSchema, routinesInsertSchemaType } from '@/db/schema';
 import { insertRoutine } from '@/services/routines';
 import { useExercises } from '@/stores/exercises';
 import { resetAllStores } from '@/stores/generic';
 import { useSets } from '@/stores/sets';
 
-type FormData = z.infer<typeof routinesInsertSchema>;
+type FormData = routinesInsertSchemaType;
 
 const NewRoutine = () => {
   const router = useRouter();
@@ -73,19 +72,19 @@ const NewRoutine = () => {
       {!exercises.length ? (
         <EmptyExercises />
       ) : (
-        <ScrollView>
+        <KeyboardAwareScrollView>
           <View className="flex gap-4 px-2 pb-12">
             {exercises.map((exercise) => (
-              <ExerciseCard key={exercise.id} {...exercise} />
+              <NewExerciseCard key={exercise.id} {...exercise} />
             ))}
-            <Link href="/new-routine/new-exercise" asChild>
+            <Link href="/new-routine/add-exercise" asChild>
               <Button size="lg" className="w-full">
                 <Ionicons name="add-sharp" size={24} />
                 <Text>Agregar ejercicio</Text>
               </Button>
             </Link>
           </View>
-        </ScrollView>
+        </KeyboardAwareScrollView>
       )}
     </View>
   );

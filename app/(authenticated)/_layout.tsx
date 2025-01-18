@@ -8,7 +8,13 @@ const Layout = () => {
         headerShadowVisible: false,
       }}>
       <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-      <Stack.Screen name="new-routine" options={{ presentation: 'modal', headerShown: false }} />
+      <Stack.Screen
+        name="new-routine"
+        options={{
+          presentation: 'fullScreenModal',
+          headerShown: false,
+        }}
+      />
       <Stack.Screen name="routine/[id]" options={{ headerShown: false }} />
     </Stack>
   );

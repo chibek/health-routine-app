@@ -1,0 +1,1 @@
+ALTER TABLE `exercises` ADD `category_id` integer REFERENCES categories(id);

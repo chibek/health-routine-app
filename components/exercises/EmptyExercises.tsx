@@ -9,7 +9,7 @@ const EmptyExercises = () => {
     <View className="justify-top mt-2 flex-1 items-center gap-4 p-4">
       <Ionicons name="add-circle-outline" size={24} />
       <Text className="text-xl">Empieza agregando un ejercicio a tu rutina</Text>
-      <Link href="/new-routine/new-exercise" asChild>
+      <Link href="/new-routine/add-exercise" asChild>
         <Button size="lg" className="w-full">
           <Ionicons name="add-circle-outline" size={24} />
           <Text>Agregar ejercicio</Text>
