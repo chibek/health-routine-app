@@ -72,7 +72,9 @@
     "uuid": "^11.0.4",
     "zeego": "^2.0.4",
     "zod": "^3.24.1",
-    "zustand": "^5.0.2"
+    "zustand": "^5.0.2",
+    "expo-image-picker": "~16.0.4",
+    "expo-file-system": "~18.0.7"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0",

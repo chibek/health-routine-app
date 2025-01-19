@@ -130,19 +130,21 @@ const AddExercise = () => {
           </Text>
         </View>
       )}
-      <FlashList
-        data={filteredExercises}
-        renderItem={renderItem}
-        estimatedItemSize={200}
-        ItemSeparatorComponent={useCallback(
-          () => (
-            <View className="mx-4 h-px bg-gray-100" />
-          ),
-          []
-        )}
-        contentContainerStyle={{ paddingVertical: 8 }}
-        extraData={selectedIds}
-      />
+      <View className="flex-1">
+        <FlashList
+          data={filteredExercises}
+          renderItem={renderItem}
+          estimatedItemSize={200}
+          ItemSeparatorComponent={useCallback(
+            () => (
+              <View className="mx-4 h-px bg-gray-100" />
+            ),
+            []
+          )}
+          contentContainerStyle={{ paddingVertical: 8 }}
+          extraData={selectedIds}
+        />
+      </View>
       {selectedIds.size > 0 && (
         <View className="fixed  px-4 pb-1">
           <Button size="lg" onPress={() => handleAddExercises()}>
