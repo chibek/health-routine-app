@@ -17,3 +17,10 @@ export const ensureDirExists = async () => {
     await FileSystem.makeDirectoryAsync(imgDir, { intermediates: true });
   }
 };
+
+export const saveImage = async (uri?: string) => {
+  if (!uri) return;
+  await ensureDirExists();
+  const dest = imgDir;
+  await FileSystem.copyAsync({ from: uri, to: dest });
+};

@@ -9,7 +9,7 @@ import { Stack, usePathname, useRouter, useSegments } from 'expo-router';
 import { SQLiteProvider } from 'expo-sqlite';
 import { StatusBar } from 'expo-status-bar';
 import React, { Suspense, useEffect } from 'react';
-import { ActivityIndicator, LogBox, View } from 'react-native';
+import { ActivityIndicator, LogBox, View, NativeModules } from 'react-native';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { Toaster } from 'sonner-native';
 
@@ -25,6 +25,7 @@ export {
   ErrorBoundary,
 } from 'expo-router';
 
+const { DynamicIsland } = NativeModules;
 const CLERK_PUBLISHABLE_KEY = process.env.EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY as string;
 if (!CLERK_PUBLISHABLE_KEY) {
   throw new Error(

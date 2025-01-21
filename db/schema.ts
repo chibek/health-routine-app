@@ -31,6 +31,7 @@ export const exercises = sqliteTable(
     id: integer().primaryKey({ autoIncrement: true }),
     name: text('name').notNull(),
     description: text('description'),
+    image: text('description'),
     categoryId: integer('category_id').references(() => categories.id, { onDelete: 'set null' }),
     createdAt: text('created_at').default(sql`(CURRENT_TIMESTAMP)`),
     updatedAt: text('updated_at')

@@ -4,7 +4,6 @@ import { useLiveQuery } from 'drizzle-orm/expo-sqlite';
 import { useNavigation, useRouter } from 'expo-router';
 import React, { memo, useCallback, useEffect, useLayoutEffect, useState } from 'react';
 import {
-  Image,
   NativeSyntheticEvent,
   SafeAreaView,
   Text,
@@ -14,6 +13,7 @@ import {
 } from 'react-native';
 import Animated, { useAnimatedStyle, useSharedValue, withTiming } from 'react-native-reanimated';
 
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/nativewindui/Avatar';
 import { Button } from '@/components/nativewindui/Button';
 import { db } from '@/db/db';
 import {
@@ -33,6 +33,7 @@ const AddExercise = () => {
     .select({
       id: exercises.id,
       name: exercises.name,
+      image: exercises.image,
       description: exercises.description,
       createdAt: exercises.createdAt,
       updatedAt: exercises.updatedAt,
@@ -100,6 +101,7 @@ const AddExercise = () => {
       .map((e) => ({
         id: e.id,
         name: e.name,
+        image: e.image,
         createdAt: e.createdAt,
         updatedAt: e.updatedAt,
         description: e.description,
@@ -158,7 +160,7 @@ const AddExercise = () => {
 
 export type ExerciseWithCategories = Pick<
   exercisesSelectSchemaType,
-  'id' | 'name' | 'description'
+  'id' | 'name' | 'description' | 'image'
 > & {
   category: categoriesSelectSchemaType | null;
 };
@@ -188,7 +190,16 @@ const ExerciseItem = ({ item, isSelected, toggleSelection }: ExerciseItemProps) 
       onPress={handlePress}>
       <Animated.View className="h-full rounded-lg bg-blue-500" style={animatedStyles} />
       <View className="overflow-hidden rounded-md">
-        <Image src="https://picsum.photos/200" className="aspect-square size-12" />
+        <Avatar alt="NativeWindUI Avatar">
+          <AvatarImage
+            source={{
+              uri: item.image ?? undefined,
+            }}
+          />
+          <AvatarFallback>
+            <Text className="text-foreground">NUI</Text>
+          </AvatarFallback>
+        </Avatar>
       </View>
       <View className="flex-grow">
         <View className="flex gap-2">

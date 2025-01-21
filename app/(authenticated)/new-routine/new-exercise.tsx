@@ -3,7 +3,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import * as Haptics from 'expo-haptics';
 import * as ImagePicker from 'expo-image-picker';
 import { Link, useRouter } from 'expo-router';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { Text, TouchableOpacity, View } from 'react-native';
 import { toast } from 'sonner-native';
@@ -14,6 +14,7 @@ import { Button } from '@/components/nativewindui/Button';
 import { exercisesInsertSchema } from '@/db/schema';
 import { insertExerciseWithCategories } from '@/services/exercises';
 import { useCategory } from '@/stores/categories';
+import { saveImage } from '@/utils/utils';
 
 type FormData = {
   name: string;
@@ -22,6 +23,8 @@ const NewExercise = () => {
   const router = useRouter();
   const category = useCategory((state) => state.category);
   const resetCategory = useCategory((state) => state.resetCategory);
+
+  const [image, setImage] = useState<string | undefined>(undefined);
 
   useEffect(() => {
     return () => {
@@ -46,14 +49,16 @@ const NewExercise = () => {
   const selectImage = async () => {
     const result = await ImagePicker.launchImageLibraryAsync(imageOptions);
     if (!result.canceled) {
-      console.log(result.assets[0].uri);
+      setImage(result.assets[0].uri);
     }
   };
 
   const onSubmit: SubmitHandler<FormData> = async (data) => {
+    await saveImage(image);
     const response = await insertExerciseWithCategories({
       name: data.name,
       categoryId: category?.id,
+      image,
     });
     if (!response.success) {
       toast.error('Error al crear rutina');
@@ -65,20 +70,20 @@ const NewExercise = () => {
   };
 
   return (
-    <View className="flex-1 gap-6 p-2">
-      <View>
-        <TouchableOpacity onPress={selectImage}>
-          <Avatar alt="NativeWindUI Avatar">
+    <View className="flex-1 gap-6 px-2 py-4">
+      <View className="items-center justify-center">
+        <TouchableOpacity onPress={selectImage} className="items-center justify-center">
+          <Avatar className="size-20" alt="NativeWindUI Avatar">
             <AvatarImage
               source={{
-                uri: 'https://pbs.twimg.com/profile_images/1782428433898708992/1voyv4_A_400x400.jpg',
+                uri: image,
               }}
             />
             <AvatarFallback>
               <Text className="text-foreground">NUI</Text>
             </AvatarFallback>
           </Avatar>
-          <Text>Añadir imagen</Text>
+          <Text className="mt-2">Añadir imagen</Text>
         </TouchableOpacity>
       </View>
       <CustomTextInput control={control} name="name" placeholder="Nombre del ejercicio" />
@@ -96,7 +101,7 @@ const NewExercise = () => {
         </TouchableOpacity>
       </Link>
 
-      <Button onPress={handleSubmit(onSubmit)}>
+      <Button size="lg" onPress={handleSubmit(onSubmit)}>
         <Text>Guardar</Text>
       </Button>
     </View>
