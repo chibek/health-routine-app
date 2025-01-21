@@ -1,17 +1,20 @@
 import { useAuth, useUser } from '@clerk/clerk-expo';
 import React from 'react';
-import { Text, View } from 'react-native';
+import { NativeModules, Text, View } from 'react-native';
 
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/nativewindui/Avatar';
 import { Button } from '@/components/nativewindui/Button';
 import { useColorScheme } from '@/lib/useColorScheme';
 
+const { TimerWidgetModule } = NativeModules;
+
 const Profile = () => {
+  console.log(NativeModules);
   const { user } = useUser();
   const { signOut } = useAuth();
   const { toggleColorScheme } = useColorScheme();
   return (
-    <View className="flex-1 p-4">
+    <View className="flex-1 gap-4 p-4">
       <Avatar alt="Profile Avatar">
         <AvatarImage
           source={{
@@ -28,6 +31,18 @@ const Profile = () => {
       </Button>
       <Button variant="plain" onPress={() => toggleColorScheme()}>
         <Text>Toggle Color theme</Text>
+      </Button>
+      <Button
+        onPress={() => {
+          TimerWidgetModule.startLiveActivity();
+        }}>
+        <Text>Start Timer</Text>
+      </Button>
+      <Button
+        onPress={() => {
+          TimerWidgetModule.stopLiveActivity();
+        }}>
+        <Text>Stop Timer</Text>
       </Button>
     </View>
   );
