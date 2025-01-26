@@ -59,13 +59,13 @@ const NewRoutine = () => {
       <Stack.Screen
         options={{
           headerRight: () => (
-            <Button onPress={handleSubmit(onSubmit)}>
+            <Button size="lg" onPress={handleSubmit(onSubmit)}>
               <Text>Guardar</Text>
             </Button>
           ),
         }}
       />
-      <View className="gap-4 px-2">
+      <View className="gap-4 px-4 pt-4">
         <CustomTextInput placeholder="Nombre de la rutina" name="name" control={control} />
         <CustomTextInput placeholder="Descripción" name="description" control={control} />
       </View>

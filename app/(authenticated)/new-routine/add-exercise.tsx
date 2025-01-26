@@ -1,7 +1,7 @@
 import { FlashList } from '@shopify/flash-list';
 import { eq } from 'drizzle-orm';
 import { useLiveQuery } from 'drizzle-orm/expo-sqlite';
-import { useNavigation, useRouter } from 'expo-router';
+import { Link, useNavigation, useRouter } from 'expo-router';
 import React, { memo, useCallback, useEffect, useLayoutEffect, useState } from 'react';
 import {
   NativeSyntheticEvent,
@@ -45,6 +45,7 @@ const AddExercise = () => {
   const { data } = useLiveQuery(getExercisesWithCategories, []);
 
   const [filteredExercises, setFilteredExercises] = useState<ExerciseWithCategories[]>(data);
+  const [category, setCategory] = useState<categoriesSelectSchemaType | null>(null);
   const [selectedIds, setSelectedIds] = useState<Set<number>>(new Set());
 
   const removeAccents = (text: string) => text.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
@@ -124,6 +125,13 @@ const AddExercise = () => {
 
   return (
     <SafeAreaView className="relative flex-1 bg-white">
+      <View className="flex items-start px-4 pb-2">
+        <Link href="/(authenticated)/new-routine/add-category" asChild>
+          <Button size="md" variant="secondary" onPress={() => setCategory(null)}>
+            <Text className="text-base">Categorias</Text>
+          </Button>
+        </Link>
+      </View>
       {selectedIds.size > 0 && (
         <View className="border-b border-gray-200 bg-gray-50 px-4 py-2">
           <Text className="font-medium text-black">
@@ -190,7 +198,7 @@ const ExerciseItem = ({ item, isSelected, toggleSelection }: ExerciseItemProps) 
       onPress={handlePress}>
       <Animated.View className="h-full rounded-lg bg-blue-500" style={animatedStyles} />
       <View className="overflow-hidden rounded-md">
-        <Avatar alt="NativeWindUI Avatar">
+        <Avatar alt="Exercise image">
           <AvatarImage
             source={{
               uri: item.image ?? undefined,

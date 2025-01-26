@@ -12,9 +12,9 @@ const buttonVariants = cva('flex-row items-center justify-center gap-2', {
   variants: {
     variant: {
       primary: 'ios:active:opacity-80 bg-primary',
-      secondary: 'ios:border-primary ios:active:bg-primary/5 border border-foreground/40',
+      secondary: 'bg-gray-200',
       tonal:
-        'ios:bg-primary/10 dark:ios:bg-primary/10 ios:active:bg-primary/15 bg-primary/15 dark:bg-primary/30',
+        'ios:bg-primary/50 dark:ios:bg-primary/10 ios:active:bg-primary/15 bg-primary/15 dark:bg-primary/30',
       plain: 'ios:active:opacity-70',
     },
     size: {
@@ -93,7 +93,7 @@ const ANDROID_RIPPLE = {
     primary: { color: convertToRGBA(COLORS.light.grey4, 0.4), borderless: false },
     secondary: { color: convertToRGBA(COLORS.light.grey5, 0.4), borderless: false },
     plain: { color: convertToRGBA(COLORS.light.grey5, 0.4), borderless: false },
-    tonal: { color: convertToRGBA(COLORS.light.grey6, 0.4), borderless: false },
+    tonal: { color: convertToRGBA(COLORS.light.grey6, 0.6), borderless: false },
   },
 };
 

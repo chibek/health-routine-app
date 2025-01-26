@@ -70,7 +70,7 @@ const NewExercise = () => {
   };
 
   return (
-    <View className="flex-1 gap-6 px-2 py-4">
+    <View className="flex-1 gap-6 bg-white px-2 py-4">
       <View className="items-center justify-center">
         <TouchableOpacity onPress={selectImage} className="items-center justify-center">
           <Avatar className="size-20" alt="NativeWindUI Avatar">
@@ -88,21 +88,21 @@ const NewExercise = () => {
       </View>
       <CustomTextInput control={control} name="name" placeholder="Nombre del ejercicio" />
       <Link href="/new-routine/add-category" asChild>
-        <TouchableOpacity className="flex-row items-center justify-between border-y border-foreground py-2">
+        <TouchableOpacity className="flex-row items-center justify-between border-b border-gray-200 py-2">
           <View className="flex gap-2">
             <Text className="font-bold">Categoria</Text>
             {category ? (
-              <Text className="text-sm text-secondary">{category.name}</Text>
+              <Text className="text-secondary">{category.name}</Text>
             ) : (
-              <Text className="text-sm text-secondary">Seleccionar</Text>
+              <Text className="text-base text-secondary">Seleccionar</Text>
             )}
           </View>
           <Ionicons name="chevron-forward-outline" size={20} />
         </TouchableOpacity>
       </Link>
 
-      <Button size="lg" onPress={handleSubmit(onSubmit)}>
-        <Text>Guardar</Text>
+      <Button size="lg" className="mt-4" onPress={handleSubmit(onSubmit)}>
+        <Text className="text-base">Guardar</Text>
       </Button>
     </View>
   );
