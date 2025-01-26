@@ -126,7 +126,7 @@ const Header: React.FC<{ routineId: number; note?: string }> = ({ routineId, not
           </View>
           <View className="flex-row items-center gap-2">
             <Text>Set:</Text>
-            <Clock className="min-w-[70px] text-xs" id="set_time" />
+            <Clock className="min-w-[70px] text-xs" id="set_time" enableActivityLife />
           </View>
         </View>
         <Button onPress={() => handleFinishRoutine()} size="lg">

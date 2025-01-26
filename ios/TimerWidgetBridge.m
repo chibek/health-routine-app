@@ -13,7 +13,8 @@
   return NO;
 }
 
-RCT_EXTERN_METHOD(startLiveActivity)
+RCT_EXTERN_METHOD(startLiveActivity:(nonnull double *)timestamp)
+RCT_EXTERN_METHOD(reset)
 RCT_EXTERN_METHOD(stopLiveActivity)
 
 @end

@@ -9,7 +9,6 @@ import { useColorScheme } from '@/lib/useColorScheme';
 const { TimerWidgetModule } = NativeModules;
 
 const Profile = () => {
-  console.log(NativeModules);
   const { user } = useUser();
   const { signOut } = useAuth();
   const { toggleColorScheme } = useColorScheme();

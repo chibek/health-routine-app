@@ -1,3 +1,5 @@
+import { NativeModules } from 'react-native';
+
 import { create } from '@/stores/generic';
 
 interface ClockState {
@@ -15,6 +17,8 @@ interface ClockState {
   resetClock: (id: string) => void;
   updateElapsedTime: (id: string, elapsedTime: number) => void;
 }
+
+const { TimerWidgetModule } = NativeModules;
 
 export const useClockStore = create<ClockState>()((set) => ({
   clocks: {},
@@ -50,7 +54,10 @@ export const useClockStore = create<ClockState>()((set) => ({
         },
       },
     })),
-  resetClock: (id) =>
+  resetClock: (id) => {
+    if (id === 'set_time') {
+      TimerWidgetModule.reset();
+    }
     set((state) => ({
       clocks: {
         ...state.clocks,
@@ -60,7 +67,8 @@ export const useClockStore = create<ClockState>()((set) => ({
           isRunning: true,
         },
       },
-    })),
+    }));
+  },
   updateElapsedTime: (id, elapsedTime) =>
     set((state) => ({
       clocks: {
