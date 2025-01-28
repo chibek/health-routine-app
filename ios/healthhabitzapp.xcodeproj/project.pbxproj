@@ -3,58 +3,28 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 70;
+	objectVersion = 46;
 	objects = {
 
 /* Begin PBXBuildFile section */
-		08FB42568E264ECEA8A85390 /* blue-Icon-60x60@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1D84D63F6FDB4F86AB6AEEC3 /* blue-Icon-60x60@3x.png */; };
 		13B07FBC1A68108700A75B9A /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.mm */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
-		24EFBA4BA1354652B6133EFC /* noop-file.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26AC16840E27472AA5FA95B4 /* noop-file.swift */; };
-		25EF8E58DFA442E5AD480740 /* dark-Icon-60x60@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 82AFE31D06C04557B73030A7 /* dark-Icon-60x60@2x.png */; };
-		268BB265ACA540F19CB5E9BF /* default-Icon-60x60@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7D7FDEDEE7CB41F990C88F15 /* default-Icon-60x60@2x.png */; };
 		3E461D99554A48A4959DE609 /* SplashScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AA286B85B6C04FC6940260E9 /* SplashScreen.storyboard */; };
-		63879B68E5E443F18B88BD28 /* green-Icon-60x60@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = B49A31FED8FB44A5B0EE0B20 /* green-Icon-60x60@3x.png */; };
-		63C1945C328B0E7019140400 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 28ECDDECE484C0DF91256D53 /* PrivacyInfo.xcprivacy */; };
-		75AE55942D40534100E79C6D /* TimerWidgetModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75AE55932D40534100E79C6D /* TimerWidgetModule.swift */; };
-		75AE55962D4053B200E79C6D /* TimerWidgetBridge.m in Sources */ = {isa = PBXBuildFile; fileRef = 75AE55952D4053B200E79C6D /* TimerWidgetBridge.m */; };
-		75AE559D2D40550600E79C6D /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 75AE559C2D40550600E79C6D /* WidgetKit.framework */; };
-		75AE559F2D40550600E79C6D /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 75AE559E2D40550600E79C6D /* SwiftUI.framework */; };
-		75AE55AC2D40550800E79C6D /* TimerWidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 75AE559B2D40550600E79C6D /* TimerWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		75AE55B62D405BA800E79C6D /* TimerWidgetAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75AE55B52D405BA800E79C6D /* TimerWidgetAttributes.swift */; };
-		8BD398C998284157B3891E52 /* dark-Icon-60x60@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 94AC033A7CC74F34A3850175 /* dark-Icon-60x60@3x.png */; };
+		66AD731210B234DC7F05BC5E /* Pods_healthhabitzapp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FB3B5FDB94E9F41558121439 /* Pods_healthhabitzapp.framework */; };
+		8E033CE9D67746EFA9A934BA /* noop-file.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A24C2A0AD66450194AED344 /* noop-file.swift */; };
 		B18059E884C0ABDD17F3DC3D /* ExpoModulesProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC715A2D49A985799AEE119 /* ExpoModulesProvider.swift */; };
 		BB2F792D24A3F905000567C9 /* Expo.plist in Resources */ = {isa = PBXBuildFile; fileRef = BB2F792C24A3F905000567C9 /* Expo.plist */; };
-		C42DB1DD16604817A33CFF3A /* default-Icon-60x60@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 737745CE50434F7398022FB9 /* default-Icon-60x60@3x.png */; };
-		DC2FFC0D617D7DB4F97012BC /* Pods_healthhabitzapp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 603DB6CB66079F4506D50CA5 /* Pods_healthhabitzapp.framework */; };
-		EAA08D7E5E3044C8A33A8D4D /* blue-Icon-60x60@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B4BF4AA0C50249C7BCBBA41A /* blue-Icon-60x60@2x.png */; };
-		FCD21A1E5DB74CAD9530A388 /* green-Icon-60x60@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7CA1FBE0BAA0421A8230D21C /* green-Icon-60x60@2x.png */; };
+		E5530E7395EB5721E3F81EC4 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = CBEB75BE52EAD95FE4C0E1DF /* PrivacyInfo.xcprivacy */; };
+		9AE71314B2524870BEBCBDC0 /* default-Icon-60x60@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0FBC2FF6D622467B9E56D6D1 /* default-Icon-60x60@2x.png */; };
+		CBA1B1E8043D41DC8D17F452 /* default-Icon-60x60@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1D731E32E41546A28F8D7512 /* default-Icon-60x60@3x.png */; };
+		BA8ED0944C52426FACB54B0F /* dark-Icon-60x60@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FE9477F272B942DFBF4B539C /* dark-Icon-60x60@2x.png */; };
+		F44B45DCF14845E183B646D2 /* dark-Icon-60x60@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B96C0EC641D4847A92A033D /* dark-Icon-60x60@3x.png */; };
+		925AE20DE7A5455B9405EC8C /* green-Icon-60x60@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 625A9A153F204FF6A6EE3684 /* green-Icon-60x60@2x.png */; };
+		139382C0443343AFB56D249E /* green-Icon-60x60@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 90489210C52046718CC80F37 /* green-Icon-60x60@3x.png */; };
+		0E5A3D91BF0C4F5A92CDFABC /* blue-Icon-60x60@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D6A2D4336D4140478CA49317 /* blue-Icon-60x60@2x.png */; };
+		51A5B2ACC586477A95E1CBB2 /* blue-Icon-60x60@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 10C4A0589A984B588DF27A77 /* blue-Icon-60x60@3x.png */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		75AE55AA2D40550800E79C6D /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 83CBB9F71A601CBA00E9B192 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 75AE559A2D40550600E79C6D;
-			remoteInfo = TimerWidgetExtension;
-		};
-/* End PBXContainerItemProxy section */
-
-/* Begin PBXCopyFilesBuildPhase section */
-		75AE55B12D40550800E79C6D /* Embed Foundation Extensions */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 13;
-			files = (
-				75AE55AC2D40550800E79C6D /* TimerWidgetExtension.appex in Embed Foundation Extensions */,
-			);
-			name = "Embed Foundation Extensions";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		13B07F961A680F5B00A75B9A /* healthhabitzapp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = healthhabitzapp.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -63,61 +33,32 @@
 		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = healthhabitzapp/Images.xcassets; sourceTree = "<group>"; };
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = healthhabitzapp/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = healthhabitzapp/main.m; sourceTree = "<group>"; };
-		1D84D63F6FDB4F86AB6AEEC3 /* blue-Icon-60x60@3x.png */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "blue-Icon-60x60@3x.png"; path = "healthhabitzapp/DynamicAppIcons/blue-Icon-60x60@3x.png"; sourceTree = "<group>"; };
-		26AC16840E27472AA5FA95B4 /* noop-file.swift */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.swift; name = "noop-file.swift"; path = "healthhabitzapp/noop-file.swift"; sourceTree = "<group>"; };
-		28ECDDECE484C0DF91256D53 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xml; name = PrivacyInfo.xcprivacy; path = healthhabitzapp/PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
-		603DB6CB66079F4506D50CA5 /* Pods_healthhabitzapp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_healthhabitzapp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		4A24C2A0AD66450194AED344 /* noop-file.swift */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.swift; name = "noop-file.swift"; path = "healthhabitzapp/noop-file.swift"; sourceTree = "<group>"; };
+		51C755BE405C49D8B1FCEBAD /* healthhabitzapp-Bridging-Header.h */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.h; name = "healthhabitzapp-Bridging-Header.h"; path = "healthhabitzapp/healthhabitzapp-Bridging-Header.h"; sourceTree = "<group>"; };
 		6C2E3173556A471DD304B334 /* Pods-healthhabitzapp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-healthhabitzapp.debug.xcconfig"; path = "Target Support Files/Pods-healthhabitzapp/Pods-healthhabitzapp.debug.xcconfig"; sourceTree = "<group>"; };
-		737745CE50434F7398022FB9 /* default-Icon-60x60@3x.png */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "default-Icon-60x60@3x.png"; path = "healthhabitzapp/DynamicAppIcons/default-Icon-60x60@3x.png"; sourceTree = "<group>"; };
-		74B43C56188E4611BF2A8CB2 /* healthhabitzapp-Bridging-Header.h */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.h; name = "healthhabitzapp-Bridging-Header.h"; path = "healthhabitzapp/healthhabitzapp-Bridging-Header.h"; sourceTree = "<group>"; };
-		75AE55932D40534100E79C6D /* TimerWidgetModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerWidgetModule.swift; sourceTree = "<group>"; };
-		75AE55952D4053B200E79C6D /* TimerWidgetBridge.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TimerWidgetBridge.m; sourceTree = "<group>"; };
-		75AE559B2D40550600E79C6D /* TimerWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = TimerWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
-		75AE559C2D40550600E79C6D /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
-		75AE559E2D40550600E79C6D /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
-		75AE55B52D405BA800E79C6D /* TimerWidgetAttributes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerWidgetAttributes.swift; sourceTree = "<group>"; };
 		7A4D352CD337FB3A3BF06240 /* Pods-healthhabitzapp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-healthhabitzapp.release.xcconfig"; path = "Target Support Files/Pods-healthhabitzapp/Pods-healthhabitzapp.release.xcconfig"; sourceTree = "<group>"; };
-		7CA1FBE0BAA0421A8230D21C /* green-Icon-60x60@2x.png */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "green-Icon-60x60@2x.png"; path = "healthhabitzapp/DynamicAppIcons/green-Icon-60x60@2x.png"; sourceTree = "<group>"; };
-		7D7FDEDEE7CB41F990C88F15 /* default-Icon-60x60@2x.png */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "default-Icon-60x60@2x.png"; path = "healthhabitzapp/DynamicAppIcons/default-Icon-60x60@2x.png"; sourceTree = "<group>"; };
-		82AFE31D06C04557B73030A7 /* dark-Icon-60x60@2x.png */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "dark-Icon-60x60@2x.png"; path = "healthhabitzapp/DynamicAppIcons/dark-Icon-60x60@2x.png"; sourceTree = "<group>"; };
-		94AC033A7CC74F34A3850175 /* dark-Icon-60x60@3x.png */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "dark-Icon-60x60@3x.png"; path = "healthhabitzapp/DynamicAppIcons/dark-Icon-60x60@3x.png"; sourceTree = "<group>"; };
 		AA286B85B6C04FC6940260E9 /* SplashScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = SplashScreen.storyboard; path = healthhabitzapp/SplashScreen.storyboard; sourceTree = "<group>"; };
-		B49A31FED8FB44A5B0EE0B20 /* green-Icon-60x60@3x.png */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "green-Icon-60x60@3x.png"; path = "healthhabitzapp/DynamicAppIcons/green-Icon-60x60@3x.png"; sourceTree = "<group>"; };
-		B4BF4AA0C50249C7BCBBA41A /* blue-Icon-60x60@2x.png */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "blue-Icon-60x60@2x.png"; path = "healthhabitzapp/DynamicAppIcons/blue-Icon-60x60@2x.png"; sourceTree = "<group>"; };
 		BB2F792C24A3F905000567C9 /* Expo.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Expo.plist; sourceTree = "<group>"; };
+		CBEB75BE52EAD95FE4C0E1DF /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; includeInIndex = 1; name = PrivacyInfo.xcprivacy; path = healthhabitzapp/PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		FAC715A2D49A985799AEE119 /* ExpoModulesProvider.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ExpoModulesProvider.swift; path = "Pods/Target Support Files/Pods-healthhabitzapp/ExpoModulesProvider.swift"; sourceTree = "<group>"; };
+		FB3B5FDB94E9F41558121439 /* Pods_healthhabitzapp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_healthhabitzapp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		0FBC2FF6D622467B9E56D6D1 /* default-Icon-60x60@2x.png */ = {isa = PBXFileReference; name = "default-Icon-60x60@2x.png"; path = "healthhabitzapp/DynamicAppIcons/default-Icon-60x60@2x.png"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		1D731E32E41546A28F8D7512 /* default-Icon-60x60@3x.png */ = {isa = PBXFileReference; name = "default-Icon-60x60@3x.png"; path = "healthhabitzapp/DynamicAppIcons/default-Icon-60x60@3x.png"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		FE9477F272B942DFBF4B539C /* dark-Icon-60x60@2x.png */ = {isa = PBXFileReference; name = "dark-Icon-60x60@2x.png"; path = "healthhabitzapp/DynamicAppIcons/dark-Icon-60x60@2x.png"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		4B96C0EC641D4847A92A033D /* dark-Icon-60x60@3x.png */ = {isa = PBXFileReference; name = "dark-Icon-60x60@3x.png"; path = "healthhabitzapp/DynamicAppIcons/dark-Icon-60x60@3x.png"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		625A9A153F204FF6A6EE3684 /* green-Icon-60x60@2x.png */ = {isa = PBXFileReference; name = "green-Icon-60x60@2x.png"; path = "healthhabitzapp/DynamicAppIcons/green-Icon-60x60@2x.png"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		90489210C52046718CC80F37 /* green-Icon-60x60@3x.png */ = {isa = PBXFileReference; name = "green-Icon-60x60@3x.png"; path = "healthhabitzapp/DynamicAppIcons/green-Icon-60x60@3x.png"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		D6A2D4336D4140478CA49317 /* blue-Icon-60x60@2x.png */ = {isa = PBXFileReference; name = "blue-Icon-60x60@2x.png"; path = "healthhabitzapp/DynamicAppIcons/blue-Icon-60x60@2x.png"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		10C4A0589A984B588DF27A77 /* blue-Icon-60x60@3x.png */ = {isa = PBXFileReference; name = "blue-Icon-60x60@3x.png"; path = "healthhabitzapp/DynamicAppIcons/blue-Icon-60x60@3x.png"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
-
-/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
-		75AE55AD2D40550800E79C6D /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
-			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
-			membershipExceptions = (
-				Info.plist,
-			);
-			target = 75AE559A2D40550600E79C6D /* TimerWidgetExtension */;
-		};
-/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
-
-/* Begin PBXFileSystemSynchronizedRootGroup section */
-		75AE55A02D40550600E79C6D /* TimerWidget */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (75AE55AD2D40550800E79C6D /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = TimerWidget; sourceTree = "<group>"; };
-/* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		13B07F8C1A680F5B00A75B9A /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DC2FFC0D617D7DB4F97012BC /* Pods_healthhabitzapp.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		75AE55982D40550600E79C6D /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				75AE559F2D40550600E79C6D /* SwiftUI.framework in Frameworks */,
-				75AE559D2D40550600E79C6D /* WidgetKit.framework in Frameworks */,
+				66AD731210B234DC7F05BC5E /* Pods_healthhabitzapp.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -134,13 +75,10 @@
 				13B07FB61A68108700A75B9A /* Info.plist */,
 				13B07FB71A68108700A75B9A /* main.m */,
 				AA286B85B6C04FC6940260E9 /* SplashScreen.storyboard */,
-				26AC16840E27472AA5FA95B4 /* noop-file.swift */,
-				74B43C56188E4611BF2A8CB2 /* healthhabitzapp-Bridging-Header.h */,
-				E018CFAC40BE4FAFAF185F1B /* DynamicAppIcons */,
-				28ECDDECE484C0DF91256D53 /* PrivacyInfo.xcprivacy */,
-				75AE55932D40534100E79C6D /* TimerWidgetModule.swift */,
-				75AE55B52D405BA800E79C6D /* TimerWidgetAttributes.swift */,
-				75AE55952D4053B200E79C6D /* TimerWidgetBridge.m */,
+				4A24C2A0AD66450194AED344 /* noop-file.swift */,
+				51C755BE405C49D8B1FCEBAD /* healthhabitzapp-Bridging-Header.h */,
+				50E7DBA60B4D472AB95D0DA2 /* DynamicAppIcons */,
+				CBEB75BE52EAD95FE4C0E1DF /* PrivacyInfo.xcprivacy */,
 			);
 			name = healthhabitzapp;
 			sourceTree = "<group>";
@@ -149,11 +87,25 @@
 			isa = PBXGroup;
 			children = (
 				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
-				603DB6CB66079F4506D50CA5 /* Pods_healthhabitzapp.framework */,
-				75AE559C2D40550600E79C6D /* WidgetKit.framework */,
-				75AE559E2D40550600E79C6D /* SwiftUI.framework */,
+				FB3B5FDB94E9F41558121439 /* Pods_healthhabitzapp.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		50E7DBA60B4D472AB95D0DA2 /* DynamicAppIcons */ = {
+			isa = PBXGroup;
+			children = (
+				0FBC2FF6D622467B9E56D6D1 /* default-Icon-60x60@2x.png */,
+				1D731E32E41546A28F8D7512 /* default-Icon-60x60@3x.png */,
+				FE9477F272B942DFBF4B539C /* dark-Icon-60x60@2x.png */,
+				4B96C0EC641D4847A92A033D /* dark-Icon-60x60@3x.png */,
+				625A9A153F204FF6A6EE3684 /* green-Icon-60x60@2x.png */,
+				90489210C52046718CC80F37 /* green-Icon-60x60@3x.png */,
+				D6A2D4336D4140478CA49317 /* blue-Icon-60x60@2x.png */,
+				10C4A0589A984B588DF27A77 /* blue-Icon-60x60@3x.png */,
+			);
+			name = DynamicAppIcons;
+			path = "";
 			sourceTree = "<group>";
 		};
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
@@ -168,7 +120,6 @@
 			children = (
 				13B07FAE1A68108700A75B9A /* healthhabitzapp */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
-				75AE55A02D40550600E79C6D /* TimerWidget */,
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
 				D65327D7A22EEC0BE12398D9 /* Pods */,
@@ -183,7 +134,6 @@
 			isa = PBXGroup;
 			children = (
 				13B07F961A680F5B00A75B9A /* healthhabitzapp.app */,
-				75AE559B2D40550600E79C6D /* TimerWidgetExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -222,21 +172,6 @@
 			name = ExpoModulesProviders;
 			sourceTree = "<group>";
 		};
-		E018CFAC40BE4FAFAF185F1B /* DynamicAppIcons */ = {
-			isa = PBXGroup;
-			children = (
-				7D7FDEDEE7CB41F990C88F15 /* default-Icon-60x60@2x.png */,
-				737745CE50434F7398022FB9 /* default-Icon-60x60@3x.png */,
-				82AFE31D06C04557B73030A7 /* dark-Icon-60x60@2x.png */,
-				94AC033A7CC74F34A3850175 /* dark-Icon-60x60@3x.png */,
-				7CA1FBE0BAA0421A8230D21C /* green-Icon-60x60@2x.png */,
-				B49A31FED8FB44A5B0EE0B20 /* green-Icon-60x60@3x.png */,
-				B4BF4AA0C50249C7BCBBA41A /* blue-Icon-60x60@2x.png */,
-				1D84D63F6FDB4F86AB6AEEC3 /* blue-Icon-60x60@3x.png */,
-			);
-			name = DynamicAppIcons;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -245,46 +180,22 @@
 			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "healthhabitzapp" */;
 			buildPhases = (
 				08A4A3CD28434E44B6B9DE2E /* [CP] Check Pods Manifest.lock */,
-				9405879C31C44EF4EBBEB73C /* [Expo] Configure project */,
+				0630936012AD9CA1FC1BC166 /* [Expo] Configure project */,
 				13B07F871A680F5B00A75B9A /* Sources */,
 				13B07F8C1A680F5B00A75B9A /* Frameworks */,
 				13B07F8E1A680F5B00A75B9A /* Resources */,
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
 				800E24972A6A228C8D4807E9 /* [CP] Copy Pods Resources */,
-				702C04E6AB6627B42367A184 /* [CP] Embed Pods Frameworks */,
-				75AE55B12D40550800E79C6D /* Embed Foundation Extensions */,
+				36C3242BBAE84F8F9EB3BC9B /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				75AE55AB2D40550800E79C6D /* PBXTargetDependency */,
 			);
 			name = healthhabitzapp;
 			productName = healthhabitzapp;
 			productReference = 13B07F961A680F5B00A75B9A /* healthhabitzapp.app */;
 			productType = "com.apple.product-type.application";
-		};
-		75AE559A2D40550600E79C6D /* TimerWidgetExtension */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 75AE55AE2D40550800E79C6D /* Build configuration list for PBXNativeTarget "TimerWidgetExtension" */;
-			buildPhases = (
-				75AE55972D40550600E79C6D /* Sources */,
-				75AE55982D40550600E79C6D /* Frameworks */,
-				75AE55992D40550600E79C6D /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			fileSystemSynchronizedGroups = (
-				75AE55A02D40550600E79C6D /* TimerWidget */,
-			);
-			name = TimerWidgetExtension;
-			packageProductDependencies = (
-			);
-			productName = TimerWidgetExtension;
-			productReference = 75AE559B2D40550600E79C6D /* TimerWidgetExtension.appex */;
-			productType = "com.apple.product-type.app-extension";
 		};
 /* End PBXNativeTarget section */
 
@@ -292,14 +203,10 @@
 		83CBB9F71A601CBA00E9B192 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1620;
 				LastUpgradeCheck = 1130;
 				TargetAttributes = {
 					13B07F861A680F5B00A75B9A = {
 						LastSwiftMigration = 1250;
-					};
-					75AE559A2D40550600E79C6D = {
-						CreatedOnToolsVersion = 16.2;
 					};
 				};
 			};
@@ -317,7 +224,6 @@
 			projectRoot = "";
 			targets = (
 				13B07F861A680F5B00A75B9A /* healthhabitzapp */,
-				75AE559A2D40550600E79C6D /* TimerWidgetExtension */,
 			);
 		};
 /* End PBXProject section */
@@ -330,22 +236,15 @@
 				BB2F792D24A3F905000567C9 /* Expo.plist in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				3E461D99554A48A4959DE609 /* SplashScreen.storyboard in Resources */,
-				268BB265ACA540F19CB5E9BF /* default-Icon-60x60@2x.png in Resources */,
-				C42DB1DD16604817A33CFF3A /* default-Icon-60x60@3x.png in Resources */,
-				25EF8E58DFA442E5AD480740 /* dark-Icon-60x60@2x.png in Resources */,
-				8BD398C998284157B3891E52 /* dark-Icon-60x60@3x.png in Resources */,
-				FCD21A1E5DB74CAD9530A388 /* green-Icon-60x60@2x.png in Resources */,
-				63879B68E5E443F18B88BD28 /* green-Icon-60x60@3x.png in Resources */,
-				EAA08D7E5E3044C8A33A8D4D /* blue-Icon-60x60@2x.png in Resources */,
-				08FB42568E264ECEA8A85390 /* blue-Icon-60x60@3x.png in Resources */,
-				63C1945C328B0E7019140400 /* PrivacyInfo.xcprivacy in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		75AE55992D40550600E79C6D /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
+				E5530E7395EB5721E3F81EC4 /* PrivacyInfo.xcprivacy in Resources */,
+				9AE71314B2524870BEBCBDC0 /* default-Icon-60x60@2x.png in Resources */,
+				CBA1B1E8043D41DC8D17F452 /* default-Icon-60x60@3x.png in Resources */,
+				BA8ED0944C52426FACB54B0F /* dark-Icon-60x60@2x.png in Resources */,
+				F44B45DCF14845E183B646D2 /* dark-Icon-60x60@3x.png in Resources */,
+				925AE20DE7A5455B9405EC8C /* green-Icon-60x60@2x.png in Resources */,
+				139382C0443343AFB56D249E /* green-Icon-60x60@3x.png in Resources */,
+				0E5A3D91BF0C4F5A92CDFABC /* blue-Icon-60x60@2x.png in Resources */,
+				51A5B2ACC586477A95E1CBB2 /* blue-Icon-60x60@3x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -366,6 +265,25 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "if [[ -f \"$PODS_ROOT/../.xcode.env\" ]]; then\n  source \"$PODS_ROOT/../.xcode.env\"\nfi\nif [[ -f \"$PODS_ROOT/../.xcode.env.local\" ]]; then\n  source \"$PODS_ROOT/../.xcode.env.local\"\nfi\n\n# The project root by default is one level up from the ios directory\nexport PROJECT_ROOT=\"$PROJECT_DIR\"/..\n\nif [[ \"$CONFIGURATION\" = *Debug* ]]; then\n  export SKIP_BUNDLING=1\nfi\nif [[ -z \"$ENTRY_FILE\" ]]; then\n  # Set the entry JS file using the bundler's entry resolution.\n  export ENTRY_FILE=\"$(\"$NODE_BINARY\" -e \"require('expo/scripts/resolveAppEntry')\" \"$PROJECT_ROOT\" ios absolute | tail -n 1)\"\nfi\n\nif [[ -z \"$CLI_PATH\" ]]; then\n  # Use Expo CLI\n  export CLI_PATH=\"$(\"$NODE_BINARY\" --print \"require.resolve('@expo/cli', { paths: [require.resolve('expo/package.json')] })\")\"\nfi\nif [[ -z \"$BUNDLE_COMMAND\" ]]; then\n  # Default Expo CLI command for bundling\n  export BUNDLE_COMMAND=\"export:embed\"\nfi\n\n# Source .xcode.env.updates if it exists to allow\n# SKIP_BUNDLING to be unset if needed\nif [[ -f \"$PODS_ROOT/../.xcode.env.updates\" ]]; then\n  source \"$PODS_ROOT/../.xcode.env.updates\"\nfi\n# Source local changes to allow overrides\n# if needed\nif [[ -f \"$PODS_ROOT/../.xcode.env.local\" ]]; then\n  source \"$PODS_ROOT/../.xcode.env.local\"\nfi\n\n`\"$NODE_BINARY\" --print \"require('path').dirname(require.resolve('react-native/package.json')) + '/scripts/react-native-xcode.sh'\"`\n\n";
+		};
+		0630936012AD9CA1FC1BC166 /* [Expo] Configure project */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "[Expo] Configure project";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# This script configures Expo modules and generates the modules provider file.\nbash -l -c \"./Pods/Target\\ Support\\ Files/Pods-healthhabitzapp/expo-configure-project.sh\"\n";
 		};
 		08A4A3CD28434E44B6B9DE2E /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -389,7 +307,7 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		702C04E6AB6627B42367A184 /* [CP] Embed Pods Frameworks */ = {
+		36C3242BBAE84F8F9EB3BC9B /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -455,25 +373,6 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-healthhabitzapp/Pods-healthhabitzapp-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		9405879C31C44EF4EBBEB73C /* [Expo] Configure project */ = {
-			isa = PBXShellScriptBuildPhase;
-			alwaysOutOfDate = 1;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			name = "[Expo] Configure project";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "# This script configures Expo modules and generates the modules provider file.\nbash -l -c \"./Pods/Target\\ Support\\ Files/Pods-healthhabitzapp/expo-configure-project.sh\"\n";
-		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -481,32 +380,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				75AE55942D40534100E79C6D /* TimerWidgetModule.swift in Sources */,
 				13B07FBC1A68108700A75B9A /* AppDelegate.mm in Sources */,
-				75AE55B62D405BA800E79C6D /* TimerWidgetAttributes.swift in Sources */,
-				75AE55962D4053B200E79C6D /* TimerWidgetBridge.m in Sources */,
 				13B07FC11A68108700A75B9A /* main.m in Sources */,
 				B18059E884C0ABDD17F3DC3D /* ExpoModulesProvider.swift in Sources */,
-				24EFBA4BA1354652B6133EFC /* noop-file.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		75AE55972D40550600E79C6D /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
+				8E033CE9D67746EFA9A934BA /* noop-file.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		75AE55AB2D40550800E79C6D /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 75AE559A2D40550600E79C6D /* TimerWidgetExtension */;
-			targetProxy = 75AE55AA2D40550800E79C6D /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		13B07F941A680F5B00A75B9A /* Debug */ = {
@@ -517,7 +398,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = healthhabitzapp/healthhabitzapp.entitlements;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 46435A68WV;
+				DEVELOPMENT_TEAM = 6DK584RWB8;
 				ENABLE_BITCODE = NO;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"$(inherited)",
@@ -525,10 +406,7 @@
 				);
 				INFOPLIST_FILE = healthhabitzapp/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.1;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MARKETING_VERSION = 1.0;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
@@ -537,7 +415,7 @@
 				);
 				OTHER_SWIFT_FLAGS = "$(inherited) -D EXPO_CONFIGURATION_DEBUG";
 				PRODUCT_BUNDLE_IDENTIFIER = com.anonymous.healthhabitzapp;
-				PRODUCT_NAME = healthhabitzapp;
+				PRODUCT_NAME = "healthhabitzapp";
 				SWIFT_OBJC_BRIDGING_HEADER = "healthhabitzapp/healthhabitzapp-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
@@ -554,13 +432,10 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = healthhabitzapp/healthhabitzapp.entitlements;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 46435A68WV;
+				DEVELOPMENT_TEAM = 6DK584RWB8;
 				INFOPLIST_FILE = healthhabitzapp/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.1;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MARKETING_VERSION = 1.0;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
@@ -569,98 +444,11 @@
 				);
 				OTHER_SWIFT_FLAGS = "$(inherited) -D EXPO_CONFIGURATION_RELEASE";
 				PRODUCT_BUNDLE_IDENTIFIER = com.anonymous.healthhabitzapp;
-				PRODUCT_NAME = healthhabitzapp;
+				PRODUCT_NAME = "healthhabitzapp";
 				SWIFT_OBJC_BRIDGING_HEADER = "healthhabitzapp/healthhabitzapp-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
-			};
-			name = Release;
-		};
-		75AE55AF2D40550800E79C6D /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
-				CLANG_ANALYZER_NONNULL = YES;
-				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
-				CLANG_ENABLE_OBJC_WEAK = YES;
-				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
-				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEVELOPMENT_TEAM = 46435A68WV;
-				ENABLE_USER_SCRIPT_SANDBOXING = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu17;
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = TimerWidget/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = TimerWidget;
-				INFOPLIST_KEY_NSHumanReadableCopyright = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 18.2;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@executable_path/../../Frameworks",
-				);
-				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
-				MARKETING_VERSION = 1.0;
-				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
-				MTL_FAST_MATH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = com.anonymous.healthhabitzapp.TimerWidget;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
-				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Debug;
-		};
-		75AE55B02D40550800E79C6D /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
-				CLANG_ANALYZER_NONNULL = YES;
-				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
-				CLANG_ENABLE_OBJC_WEAK = YES;
-				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
-				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CODE_SIGN_STYLE = Automatic;
-				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 1;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = 46435A68WV;
-				ENABLE_USER_SCRIPT_SANDBOXING = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu17;
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = TimerWidget/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = TimerWidget;
-				INFOPLIST_KEY_NSHumanReadableCopyright = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 18.2;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@executable_path/../../Frameworks",
-				);
-				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
-				MARKETING_VERSION = 1.0;
-				MTL_FAST_MATH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = com.anonymous.healthhabitzapp.TimerWidget;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SKIP_INSTALL = YES;
-				SWIFT_COMPILATION_MODE = wholemodule;
-				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
@@ -723,14 +511,14 @@
 					"${PODS_CONFIGURATION_BUILD_DIR}/React-graphics/React_graphics.framework/Headers/react/renderer/graphics/platform/ios",
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 15.1;
-				LD_RUNPATH_SEARCH_PATHS = (
-					/usr/lib/swift,
-					"$(inherited)",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "/usr/lib/swift $(inherited)";
 				LIBRARY_SEARCH_PATHS = "$(SDKROOT)/usr/lib/swift\"$(inherited)\"";
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				OTHER_LDFLAGS = "$(inherited)  ";
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					" ",
+				);
 				REACT_NATIVE_PATH = "${PODS_ROOT}/../../node_modules/react-native";
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) DEBUG";
@@ -790,13 +578,13 @@
 					"${PODS_CONFIGURATION_BUILD_DIR}/React-graphics/React_graphics.framework/Headers/react/renderer/graphics/platform/ios",
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 15.1;
-				LD_RUNPATH_SEARCH_PATHS = (
-					/usr/lib/swift,
-					"$(inherited)",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "/usr/lib/swift $(inherited)";
 				LIBRARY_SEARCH_PATHS = "$(SDKROOT)/usr/lib/swift\"$(inherited)\"";
 				MTL_ENABLE_DEBUG_INFO = NO;
-				OTHER_LDFLAGS = "$(inherited)  ";
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					" ",
+				);
 				REACT_NATIVE_PATH = "${PODS_ROOT}/../../node_modules/react-native";
 				SDKROOT = iphoneos;
 				USE_HERMES = true;
@@ -816,15 +604,6 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		75AE55AE2D40550800E79C6D /* Build configuration list for PBXNativeTarget "TimerWidgetExtension" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				75AE55AF2D40550800E79C6D /* Debug */,
-				75AE55B02D40550800E79C6D /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 		83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "healthhabitzapp" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -835,6 +614,9 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin PBXVariantGroup section */
+/* End PBXVariantGroup section */
 	};
 	rootObject = 83CBB9F71A601CBA00E9B192 /* Project object */;
 }

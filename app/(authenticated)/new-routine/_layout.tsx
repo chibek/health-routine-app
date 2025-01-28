@@ -42,7 +42,9 @@ const _layout = () => {
           animation: 'slide_from_bottom',
           headerRight: () => (
             <Link href="/new-routine/new-exercise" asChild>
-              <Text className="text-base">Crear</Text>
+              <Button variant="plain">
+                <Text className="text-base">Crear</Text>
+              </Button>
             </Link>
           ),
         }}
@@ -68,14 +70,7 @@ const _layout = () => {
       <Stack.Screen
         name="add-category"
         options={{
-          headerTitle: () => (
-            <View className="flex items-center justify-start">
-              <View className="h-1 w-1/3 rounded-full bg-gray-300" />
-              <Text className="mt-4 text-base">Seleccionar Categoría</Text>
-            </View>
-          ),
-          headerShown: true,
-          presentation: 'modal',
+          title: 'Seleccionar Categoría',
         }}
       />
     </Stack>

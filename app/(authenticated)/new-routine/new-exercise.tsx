@@ -27,6 +27,7 @@ const NewExercise = () => {
   const [image, setImage] = useState<string | undefined>(undefined);
 
   useEffect(() => {
+    resetCategory();
     return () => {
       resetCategory();
     };

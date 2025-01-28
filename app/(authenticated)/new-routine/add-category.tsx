@@ -1,7 +1,7 @@
 import { FlashList } from '@shopify/flash-list';
 import { useLiveQuery } from 'drizzle-orm/expo-sqlite';
 import { useRouter } from 'expo-router';
-import { memo, useCallback } from 'react';
+import { memo, useCallback, useMemo } from 'react';
 import { Image, Text, TouchableOpacity, View } from 'react-native';
 
 import { db } from '@/db/db';
@@ -9,7 +9,17 @@ import { categoriesSelectSchemaType } from '@/db/schema';
 import { useCategory } from '@/stores/categories';
 
 const AddCategory = () => {
-  const { data } = useLiveQuery(db.query.categories.findMany(), []);
+  const { data: categoriesData } = useLiveQuery(db.query.categories.findMany(), []);
+
+  const data = useMemo(() => {
+    const allCategory: categoriesSelectSchemaType = {
+      id: -1,
+      name: 'Todos',
+      createdAt: new Date().toDateString(),
+      updatedAt: new Date().toDateString(),
+    };
+    return [allCategory, ...(categoriesData || [])];
+  }, [categoriesData]);
 
   const renderItem = useCallback(
     ({ item }: { item: categoriesSelectSchemaType }) => <MemoizedCategoryItem item={item} />,

@@ -1,3 +1,4 @@
+import { Ionicons } from '@expo/vector-icons';
 import { FlashList } from '@shopify/flash-list';
 import { eq } from 'drizzle-orm';
 import { useLiveQuery } from 'drizzle-orm/expo-sqlite';
@@ -23,12 +24,14 @@ import {
   exercises,
   exercisesSelectSchemaType,
 } from '@/db/schema';
+import { useCategory } from '@/stores/categories';
 import { useExercises } from '@/stores/exercises';
 
 const AddExercise = () => {
   const router = useRouter();
   const navigation = useNavigation();
-
+  const category = useCategory((state) => state.category);
+  const resetCategory = useCategory((state) => state.resetCategory);
   const getExercisesWithCategories = db
     .select({
       id: exercises.id,
@@ -45,16 +48,36 @@ const AddExercise = () => {
   const { data } = useLiveQuery(getExercisesWithCategories, []);
 
   const [filteredExercises, setFilteredExercises] = useState<ExerciseWithCategories[]>(data);
-  const [category, setCategory] = useState<categoriesSelectSchemaType | null>(null);
   const [selectedIds, setSelectedIds] = useState<Set<number>>(new Set());
+  const [searchQuery, setSearchQuery] = useState('');
 
   const removeAccents = (text: string) => text.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
   const isSelected = (id: number) => selectedIds.has(id);
   const addExercises = useExercises((state) => state.addExercises);
 
+  // Updated filter function that considers both search query and category
+  const filterExercises = useCallback(
+    (query: string) => {
+      if (!data) return [];
+
+      return data.filter((exercise) => {
+        const nameMatch = removeAccents(exercise.name)
+          .toLowerCase()
+          .includes(removeAccents(query.toLowerCase()));
+
+        const categoryMatch =
+          !category || category.id === -1 ? true : exercise.category?.id === category.id;
+
+        return nameMatch && categoryMatch;
+      });
+    },
+    [data, category]
+  );
+
+  // Effect to update filtered exercises when either search query or category changes
   useEffect(() => {
-    setFilteredExercises(data || []);
-  }, [data]);
+    setFilteredExercises(filterExercises(searchQuery));
+  }, [filterExercises, searchQuery, category, data]);
 
   useLayoutEffect(() => {
     navigation.setOptions({
@@ -68,17 +91,7 @@ const AddExercise = () => {
         inputType: 'text',
         onChangeText: (event: NativeSyntheticEvent<TextInputChangeEventData>) => {
           const query = event.nativeEvent.text;
-          if (query.length > 0) {
-            setFilteredExercises(
-              (data || []).filter((exercise) =>
-                removeAccents(exercise.name)
-                  .toLowerCase()
-                  .includes(removeAccents(query.toLowerCase()))
-              )
-            );
-          } else {
-            setFilteredExercises(data || []);
-          }
+          setSearchQuery(query);
         },
       },
     });
@@ -127,7 +140,10 @@ const AddExercise = () => {
     <SafeAreaView className="relative flex-1 bg-white">
       <View className="flex items-start px-4 pb-2">
         <Link href="/(authenticated)/new-routine/add-category" asChild>
-          <Button size="md" variant="secondary" onPress={() => setCategory(null)}>
+          <Button
+            size="md"
+            variant="secondary"
+            className={category && category.id !== -1 ? 'bg-primary' : ''}>
             <Text className="text-base">Categorias</Text>
           </Button>
         </Link>
@@ -156,7 +172,7 @@ const AddExercise = () => {
         />
       </View>
       {selectedIds.size > 0 && (
-        <View className="fixed  px-4 pb-1">
+        <View className="fixed px-4 pb-1">
           <Button size="lg" onPress={() => handleAddExercises()}>
             <Text>Agregar</Text>
           </Button>
@@ -178,6 +194,7 @@ type ExerciseItemProps = {
   isSelected: boolean;
   toggleSelection: (id: number) => void;
 };
+
 const ExerciseItem = ({ item, isSelected, toggleSelection }: ExerciseItemProps) => {
   const width = useSharedValue<number>(0);
   const animatedStyles = useAnimatedStyle(() => ({

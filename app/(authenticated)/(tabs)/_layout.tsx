@@ -2,7 +2,7 @@ import { Tabs } from '@/components/Tabs';
 
 const TabLayout = () => {
   return (
-    <Tabs ignoresTopSafeArea hapticFeedbackEnabled>
+    <Tabs ignoresTopSafeArea hapticFeedbackEnabled backBehavior="history">
       <Tabs.Screen
         name="home"
         options={{
