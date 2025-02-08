@@ -2,6 +2,7 @@ import { Tabs } from '@/components/Tabs';
 
 const TabLayout = () => {
   return (
+    // <RevenueCatProvider>
     <Tabs ignoresTopSafeArea hapticFeedbackEnabled backBehavior="history">
       <Tabs.Screen
         name="home"
@@ -31,6 +32,7 @@ const TabLayout = () => {
         }}
       />
     </Tabs>
+    // </RevenueCatProvider>
   );
 };
 

@@ -46,7 +46,7 @@ const NewRoutine = () => {
     toast.success('Rutina creada exitosamente');
     router.dismiss();
   };
-
+  console.log({ sets });
   // Detect when the screen component is unmounted
   useEffect(() => {
     return () => {

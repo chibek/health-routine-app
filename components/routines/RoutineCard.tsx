@@ -3,7 +3,7 @@ import { Text, View } from 'react-native';
 import Animated, { FadeOutLeft } from 'react-native-reanimated';
 
 import { Button } from '@/components/nativewindui/Button';
-import RoutineOptions from '@/components/routines/RoutineOptions';
+// import RoutineOptions from '@/components/routines/RoutineOptions';
 import { routinesSelectSchemaType } from '@/db/schema';
 import { cn } from '@/lib/cn';
 import { COLORS } from '@/theme/colors';
@@ -19,7 +19,7 @@ const RoutineCard = ({ name, description, color, id }: RoutineCardProps) => {
       style={{ borderColor }}>
       <View className="flex-row justify-between">
         <Text className="text-lg font-bold">{name}</Text>
-        <RoutineOptions routineId={id} />
+        {/* <RoutineOptions routineId={id} /> */}
       </View>
       <Text className="text-accent">{description}</Text>
       <Link href={`/routine/${id}`} asChild>

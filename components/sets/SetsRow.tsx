@@ -1,4 +1,5 @@
 import { Ionicons } from '@expo/vector-icons';
+import clsx from 'clsx';
 import { FC, useRef, useState } from 'react';
 import { LayoutAnimation, Text, TextInput, TouchableOpacity, View } from 'react-native';
 import ReanimatedSwipeable, {
@@ -80,7 +81,10 @@ const SetsRow: FC<SetsRowProps> = ({
           )}>
           <Text className="h-8 w-20 text-center text-lg font-semibold">{order}</Text>
           <TextInput
-            className="h-8 w-20 text-center text-lg font-semibold placeholder:text-gray-400"
+            className={clsx(
+              'h-8 w-20 text-center text-lg font-semibold ',
+              isChecked ? 'placeholder:text-black' : 'placeholder:text-gray-400'
+            )}
             keyboardType="numeric"
             placeholder={oldWeight ? oldWeight.toString() : '-'}
             style={{ textAlignVertical: 'center', textAlign: 'center' }}
@@ -88,10 +92,14 @@ const SetsRow: FC<SetsRowProps> = ({
             onChangeText={(value) => handleUpdateAction('weight', value)}
           />
           <TextInput
-            className="h-8 w-20 text-center text-lg font-semibold placeholder:text-gray-400"
+            className={clsx(
+              'h-8 w-20 text-center text-lg font-semibold ',
+              isChecked ? 'placeholder:text-black' : 'placeholder:text-gray-400'
+            )}
             keyboardType="numeric"
             value={reps?.toString()}
             placeholder={oldReps ? oldReps.toString() : '-'}
+            placeholderTextColor={isChecked ? '#000' : '#ccc'}
             onChangeText={(value) => handleUpdateAction('reps', value)}
           />
           <View className="grow items-center">

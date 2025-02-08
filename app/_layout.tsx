@@ -2,6 +2,7 @@ import '../global.css';
 import 'expo-dev-client';
 import { ClerkProvider, ClerkLoaded, useAuth } from '@clerk/clerk-expo';
 import { ActionSheetProvider } from '@expo/react-native-action-sheet';
+import { BottomSheetModalProvider } from '@gorhom/bottom-sheet';
 import { ThemeProvider as NavThemeProvider } from '@react-navigation/native';
 import { useMigrations } from 'drizzle-orm/expo-sqlite/migrator';
 import { useDrizzleStudio } from 'expo-drizzle-studio-plugin';
@@ -100,10 +101,12 @@ const RootLayout = () => {
             />
             <ActionSheetProvider>
               <GestureHandlerRootView style={{ flex: 1 }}>
-                <Toaster />
-                <NavThemeProvider value={NAV_THEME[colorScheme]}>
-                  <InitialLayout />
-                </NavThemeProvider>
+                <BottomSheetModalProvider>
+                  <Toaster />
+                  <NavThemeProvider value={NAV_THEME[colorScheme]}>
+                    <InitialLayout />
+                  </NavThemeProvider>
+                </BottomSheetModalProvider>
               </GestureHandlerRootView>
             </ActionSheetProvider>
           </SQLiteProvider>

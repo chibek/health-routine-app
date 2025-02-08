@@ -36,6 +36,7 @@ export const insertRoutine = async ({
   insertSets,
 }: AddRoutineType): Promise<Response> => {
   try {
+    console.log({ insertSets });
     await db.transaction(async (tx) => {
       const routineInserted = await tx
         .insert(routines)

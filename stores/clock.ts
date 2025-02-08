@@ -55,7 +55,7 @@ export const useClockStore = create<ClockState>()((set) => ({
       },
     })),
   resetClock: (id) => {
-    if (id === 'set_time') {
+    if (id === 'set_time' && TimerWidgetModule) {
       TimerWidgetModule.reset();
     }
     set((state) => ({

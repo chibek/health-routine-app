@@ -145,16 +145,13 @@ export const exerciseSetsRelations = relations(exerciseSets, ({ one }) => ({
   }),
 }));
 
-export const workoutHistory = sqliteTable(
-  'workout_history',
+export const workoutRoutines = sqliteTable(
+  'workout_routines',
   {
     id: integer().primaryKey({ autoIncrement: true }),
     routineId: integer('routine_id')
       .notNull()
       .references(() => routines.id, { onDelete: 'cascade' }),
-    exerciseSetId: integer('exercise_set_id')
-      .notNull()
-      .references(() => exerciseSets.id, { onDelete: 'cascade' }),
     trainDuration: integer('train_duration'),
     notes: text('notes'),
     createdAt: text('created_at').default(sql`(CURRENT_TIMESTAMP)`),
@@ -166,14 +163,42 @@ export const workoutHistory = sqliteTable(
   (t) => []
 );
 
+export const workoutSets = sqliteTable(
+  'workout_sets',
+  {
+    id: integer().primaryKey({ autoIncrement: true }),
+    workoutRoutineId: integer('workout_routine_id')
+      .notNull()
+      .references(() => workoutRoutines.id, { onDelete: 'cascade' }),
+    exerciseSetId: integer('exercise_set_id')
+      .notNull()
+      .references(() => exerciseSets.id, { onDelete: 'cascade' }),
+    createdAt: text('created_at').default(sql`(CURRENT_TIMESTAMP)`),
+    updatedAt: text('updated_at')
+      .notNull()
+      .default(sql`(CURRENT_TIMESTAMP)`)
+      .$onUpdate(() => sql`(CURRENT_TIMESTAMP)`),
+  },
+  (t) => []
+);
+
 // Relations
-export const workoutHistoryRelations = relations(workoutHistory, ({ one }) => ({
+export const workoutRoutinesRelations = relations(workoutRoutines, ({ one, many }) => ({
   routine: one(routines, {
-    fields: [workoutHistory.routineId],
+    fields: [workoutRoutines.routineId],
     references: [routines.id],
   }),
+  sets: many(workoutSets),
+}));
+
+// Relations for workout sets
+export const workoutSetsRelations = relations(workoutSets, ({ one }) => ({
+  workoutRoutine: one(workoutRoutines, {
+    fields: [workoutSets.workoutRoutineId],
+    references: [workoutRoutines.id],
+  }),
   exerciseSet: one(exerciseSets, {
-    fields: [workoutHistory.exerciseSetId],
+    fields: [workoutSets.exerciseSetId],
     references: [exerciseSets.id],
   }),
 }));
@@ -203,11 +228,18 @@ export type TypeEnum = exerciseSetsSelectSchemaType['type'];
 
 export const exerciseSetsInsertSchema = createInsertSchema(exerciseSets);
 export type exerciseSetsInsertSchemaType = z.infer<typeof exerciseSetsInsertSchema>;
-export const workoutLogsSelectSchema = createSelectSchema(workoutHistory);
-export type workoutLogsSelectSchemaType = z.infer<typeof workoutLogsSelectSchema>;
 
-export const workoutLogsInsertSchema = createInsertSchema(workoutHistory);
-export type workoutLogsInsertSchemaType = z.infer<typeof workoutLogsInsertSchema>;
+export const workoutRoutinesSelectSchema = createSelectSchema(workoutRoutines);
+export type WorkoutRoutinesSelectSchema = z.infer<typeof workoutRoutinesSelectSchema>;
+
+export const workoutRoutinesInsertSchema = createInsertSchema(workoutRoutines);
+export type WorkoutRoutinesInsertSchema = z.infer<typeof workoutRoutinesInsertSchema>;
+
+export const workoutSetsSelectSchema = createSelectSchema(workoutSets);
+export type WorkoutSetsSelectSchema = z.infer<typeof workoutSetsSelectSchema>;
+
+export const workoutSetsInsertSchema = createInsertSchema(workoutSets);
+export type WorkoutSetsInsertSchema = z.infer<typeof workoutSetsInsertSchema>;
 
 export const categoriesInsertSchema = createInsertSchema(categories);
 export type categoriesInsertSchemaType = z.infer<typeof categoriesInsertSchema>;

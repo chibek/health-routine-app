@@ -31,7 +31,7 @@ const Clock = memo(({ id, className, enableActivityLife = false }: ClockProps) =
         const elapsed = Date.now() - clock.startTime;
         updateElapsedTime(id, elapsed);
       }, 100);
-      if (enableActivityLife) {
+      if (enableActivityLife && TimerWidgetModule) {
         TimerWidgetModule.startLiveActivity(clock.startTime / 1000);
       }
     }

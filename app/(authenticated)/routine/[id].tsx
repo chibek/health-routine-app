@@ -15,7 +15,7 @@ import { Button } from '@/components/nativewindui/Button';
 import { db } from '@/db/db';
 import { routines } from '@/db/schema';
 import { deleteSets, insertSets, updateSets } from '@/services/sets';
-import { createWorkoutHistoryService } from '@/services/workout-history';
+import { insertWorkoutRoutineHistory, insertWorkoutSetHistory } from '@/services/workout-history';
 import { useClockStore } from '@/stores/clock';
 import { resetAllStores } from '@/stores/generic';
 import { useSetsStore } from '@/stores/selectSets';
@@ -101,15 +101,18 @@ const Header: React.FC<{ routineId: number; note?: string }> = ({ routineId, not
 
   const handleFinishRoutine = async () => {
     await deleteSets(removedSets);
+    const workoutRoutine = await insertWorkoutRoutineHistory({
+      routineId,
+      trainDuration: clock.elapsedTime,
+    });
+    if (!workoutRoutine) return;
     const insertedSets = await insertSets(pendingSets);
     const updatedSets = await updateSets(setsByExercise);
     [...updatedSets, ...insertedSets].forEach(
       async (s) =>
-        await createWorkoutHistoryService({
-          routineId,
+        await insertWorkoutSetHistory({
+          workoutRoutineId: workoutRoutine.id,
           exerciseSetId: s.id,
-          notes: note,
-          trainDuration: clock.elapsedTime,
         })
     );
     Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);

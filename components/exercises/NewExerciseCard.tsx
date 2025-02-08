@@ -28,9 +28,10 @@ const NewExerciseCard = ({ name, id }: NewExerciseCardProps) => {
           <NewSetsRow
             key={serie.order}
             {...serie}
-            onUpdate={(field, value) =>
-              updateSets({ order: serie.order, exerciseId: id, field, value })
-            }
+            onUpdate={(field, value) => {
+              updateSets({ order: serie.order, exerciseId: id, field, value });
+              console.log({ sets2: sets });
+            }}
             onDelete={() => removeSet({ order: serie.order, exerciseId: id })}
           />
         ))}

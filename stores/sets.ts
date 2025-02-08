@@ -32,7 +32,7 @@ export const useSets = create<SetsState>()((set, get) => ({
     set((state) => ({
       sets: state.sets.map((set) =>
         set.order === order && set.exerciseId === exerciseId
-          ? { ...set, [field]: value === '' || /^\d+$/.test(value) ? null : parseInt(value, 10) }
+          ? { ...set, [field]: value === '' || !/^\d+$/.test(value) ? null : parseInt(value, 10) }
           : set
       ),
     })),
